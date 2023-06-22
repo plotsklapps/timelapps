@@ -48,9 +48,14 @@ final StateProvider<String?> fontFamilyProvider =
   }
 });
 
+// Bool provider to toggle between minutes and seconds
+final StateProvider<bool> isMinutesShownProvider = StateProvider<bool>((ref) {
+  return true;
+});
+
 // Bool provider to toggle Text widget showing minutes on/off
 final StateProvider<bool> isTimeShownProvider = StateProvider<bool>((ref) {
-  return false;
+  return true;
 });
 
 // ThemeData provider for light theme, the colorscheme is based on

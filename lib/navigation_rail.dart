@@ -14,6 +14,9 @@ NavigationRail buildNavigationRail(WidgetRef ref) {
         ref.read(isFontQuestrialProvider.notifier).state =
             !ref.watch(isFontQuestrialProvider);
       } else if (index == 3) {
+        ref.read(isMinutesShownProvider.notifier).state =
+            !ref.watch(isMinutesShownProvider);
+      } else if (index == 4) {
         ref.read(isTimeShownProvider.notifier).state =
             !ref.watch(isTimeShownProvider);
       }
@@ -39,10 +42,16 @@ NavigationRail buildNavigationRail(WidgetRef ref) {
         label: const Text('Font'),
       ),
       NavigationRailDestination(
+        icon: ref.watch(isMinutesShownProvider)
+            ? const Icon(Icons.check_circle)
+            : const Icon(Icons.remove_circle),
+        label: const Text('Duration'),
+      ),
+      NavigationRailDestination(
         icon: ref.watch(isTimeShownProvider)
             ? const Icon(Icons.check_circle)
             : const Icon(Icons.remove_circle),
-        label: const Text('Minutes'),
+        label: const Text('Timer'),
       ),
     ],
   );

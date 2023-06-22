@@ -39,7 +39,8 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class HomeScreenState extends ConsumerState<HomeScreen> {
   // Set initial timer value to 15 minutes
-  double timerSeconds = 15;
+  double timerSeconds = 30;
+  double timerMinutes = 15;
   Timer? timer;
   bool isRunning = false;
 
@@ -64,6 +65,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     });
 
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      // TODO: Move this out of setState and introduce Riverpod to switch
+      // between minutes and seconds.
       setState(() {
         if (timerSeconds > 1) {
           timerSeconds -= 1;
