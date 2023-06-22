@@ -1,27 +1,29 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-import 'package:timelapps/flexscheme.dart';
+import 'package:timelapps/all_imports.dart';
 
 void main() {
-  runApp(const MainEntry());
+  runApp(const ProviderScope(child: MainEntry()));
 }
 
-class MainEntry extends StatelessWidget {
+class MainEntry extends ConsumerWidget {
   const MainEntry({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      title: 'Timer App',
-      theme: themeLight,
+      debugShowCheckedModeBanner: false,
+      title: 'Timelapps',
+      theme: ref.watch(themeLightProvider),
+      darkTheme: ref.watch(themeDarkProvider),
+      themeMode: ref.watch(themeModeProvider),
       home: const HomeScreen(),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
@@ -30,7 +32,7 @@ class HomeScreen extends StatefulWidget {
   }
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends ConsumerState<HomeScreen> {
   // Set initial timer value to 15 minutes
   double timerSeconds = 15;
   Timer? timer;
@@ -98,29 +100,7 @@ class HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(right: 32.0),
         child: Row(
           children: [
-            isRunning
-                ? const SizedBox()
-                : NavigationRail(
-                    selectedIndex: 0,
-                    onDestinationSelected: (int index) {
-                      setState(() {
-                        // _selectedIndex = index;
-                      });
-                    },
-                    labelType: NavigationRailLabelType.all,
-                    destinations: const <NavigationRailDestination>[
-                      NavigationRailDestination(
-                        icon: Icon(Icons.timer),
-                        selectedIcon: Icon(Icons.timer),
-                        label: Text('Timer'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.settings),
-                        selectedIcon: Icon(Icons.settings),
-                        label: Text('Settings'),
-                      ),
-                    ],
-                  ),
+            isRunning ? const SizedBox() : buildNavigationRail(ref),
             Expanded(
               child: LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
