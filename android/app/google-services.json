@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "309005438799",
+    "project_id": "plotsklapps-timelapps",
+    "storage_bucket": "plotsklapps-timelapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309005438799:android:995688c012b7af5291bf3a",
+        "android_client_info": {
+          "package_name": "dev.plotsklapps.timelapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309005438799-dg99e3db45f7lj9631o9814c6ojabi29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3dKdO5JSHFOTwde5MM-rdqq8tVDYaP-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309005438799-dg99e3db45f7lj9631o9814c6ojabi29.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "309005438799-21o6rccd0ru1795ujf0nvoit98qok10j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.plotsklapps.timelapps.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+export 'package:firebase_core/firebase_core.dart';
 export 'package:flex_color_scheme/flex_color_scheme.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_riverpod/flutter_riverpod.dart';
