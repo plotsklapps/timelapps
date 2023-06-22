@@ -95,34 +95,61 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 48.0),
-        child: Center(
-          child: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-            final circleSize =
-                Size(constraints.maxWidth, constraints.maxHeight);
-            return GestureDetector(
-              onPanUpdate: (details) {
-                onDragUpdate(details, circleSize);
-              },
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  CustomPaint(
-                    size: circleSize,
-                    painter: TimerPainter(
-                      timerValue: timerSeconds,
-                      maxValue: 60,
-                    ),
+        padding: const EdgeInsets.only(right: 32.0),
+        child: Row(
+          children: [
+            isRunning
+                ? const SizedBox()
+                : NavigationRail(
+                    selectedIndex: 0,
+                    onDestinationSelected: (int index) {
+                      setState(() {
+                        // _selectedIndex = index;
+                      });
+                    },
+                    labelType: NavigationRailLabelType.all,
+                    destinations: const <NavigationRailDestination>[
+                      NavigationRailDestination(
+                        icon: Icon(Icons.timer),
+                        selectedIcon: Icon(Icons.timer),
+                        label: Text('Timer'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.settings),
+                        selectedIcon: Icon(Icons.settings),
+                        label: Text('Settings'),
+                      ),
+                    ],
                   ),
-                  Text(
-                    timerSeconds.toStringAsFixed(0),
-                    style: const TextStyle(fontSize: 50),
+            Expanded(
+              child: LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                final circleSize =
+                    Size(constraints.maxWidth, constraints.maxHeight);
+                return GestureDetector(
+                  onPanUpdate: (details) {
+                    onDragUpdate(details, circleSize);
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CustomPaint(
+                        size: circleSize,
+                        painter: TimerPainter(
+                          timerValue: timerSeconds,
+                          maxValue: 60,
+                        ),
+                      ),
+                      Text(
+                        timerSeconds.toStringAsFixed(0),
+                        style: const TextStyle(fontSize: 50),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            );
-          }),
+                );
+              }),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
