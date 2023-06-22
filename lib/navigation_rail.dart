@@ -10,6 +10,12 @@ NavigationRail buildNavigationRail(WidgetRef ref) {
       } else if (index == 1) {
         ref.read(isThemeGreenProvider.notifier).state =
             !ref.watch(isThemeGreenProvider);
+      } else if (index == 2) {
+        ref.read(isFontQuestrialProvider.notifier).state =
+            !ref.watch(isFontQuestrialProvider);
+      } else if (index == 3) {
+        ref.read(isTimeShownProvider.notifier).state =
+            !ref.watch(isTimeShownProvider);
       }
     },
     labelType: NavigationRailLabelType.all,
@@ -26,10 +32,17 @@ NavigationRail buildNavigationRail(WidgetRef ref) {
             : const Icon(Icons.wine_bar),
         label: const Text('Color'),
       ),
-      const NavigationRailDestination(
-        icon: Icon(Icons.settings),
-        selectedIcon: Icon(Icons.settings),
-        label: Text('Settings'),
+      NavigationRailDestination(
+        icon: ref.watch(isFontQuestrialProvider)
+            ? const Icon(Icons.quora)
+            : const Icon(Icons.format_bold),
+        label: const Text('Font'),
+      ),
+      NavigationRailDestination(
+        icon: ref.watch(isTimeShownProvider)
+            ? const Icon(Icons.check_circle)
+            : const Icon(Icons.remove_circle),
+        label: const Text('Minutes'),
       ),
     ],
   );

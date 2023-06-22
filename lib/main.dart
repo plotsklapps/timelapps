@@ -120,10 +120,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                           maxValue: 60,
                         ),
                       ),
-                      Text(
-                        timerSeconds.toStringAsFixed(0),
-                        style: const TextStyle(fontSize: 50),
-                      ),
+                      ref.watch(isTimeShownProvider)
+                          ? Text(
+                              timerSeconds.toStringAsFixed(0),
+                              style: const TextStyle(fontSize: 50),
+                            )
+                          : const SizedBox(),
                     ],
                   ),
                 );
@@ -154,14 +156,12 @@ class TimerPainter extends CustomPainter {
     final fillPercentage = timerValue / maxValue;
 
     final paint = Paint()
-      ..color = Colors.primaries.first
+      ..color = FlexColor.redWineLightPrimary
       ..style = PaintingStyle.stroke
       ..strokeWidth = 80.0;
 
     // Paint minute marks
-    final markerPaint = Paint()
-      ..color = Colors.black
-      ..strokeWidth = 2;
+    final markerPaint = Paint()..strokeWidth = 2;
 
     const markerLength = 15.0;
     final markerCount = maxValue.toInt();

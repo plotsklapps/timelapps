@@ -32,6 +32,27 @@ final StateProvider<FlexScheme> flexSchemeProvider =
   }
 });
 
+// Bool provider for questrial/bebas neue font
+final StateProvider<bool> isFontQuestrialProvider = StateProvider<bool>((ref) {
+  return true;
+});
+
+// Font provider for questrial/bebas neue font based on isFontQuestrialProvider
+final StateProvider<String?> fontFamilyProvider =
+    StateProvider<String?>((StateProviderRef<String?> ref) {
+  final bool isFontQuestrial = ref.watch(isFontQuestrialProvider);
+  if (!isFontQuestrial) {
+    return GoogleFonts.bebasNeue().fontFamily;
+  } else {
+    return GoogleFonts.questrial().fontFamily;
+  }
+});
+
+// Bool provider to toggle Text widget showing minutes on/off
+final StateProvider<bool> isTimeShownProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
 // ThemeData provider for light theme, the colorscheme is based on
 // flexSchemeProvider
 final StateProvider<ThemeData> themeLightProvider =
@@ -71,7 +92,7 @@ final StateProvider<ThemeData> themeLightProvider =
     visualDensity: FlexColorScheme.comfortablePlatformDensity,
     useMaterial3: true,
     swapLegacyOnMaterial3: true,
-    fontFamily: GoogleFonts.questrial().fontFamily,
+    fontFamily: ref.watch(fontFamilyProvider),
   );
 });
 
@@ -113,6 +134,6 @@ final StateProvider<ThemeData> themeDarkProvider =
     visualDensity: FlexColorScheme.comfortablePlatformDensity,
     useMaterial3: true,
     swapLegacyOnMaterial3: true,
-    fontFamily: GoogleFonts.questrial().fontFamily,
+    fontFamily: ref.watch(fontFamilyProvider),
   );
 });
