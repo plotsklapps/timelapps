@@ -5,3 +5,5 @@ export 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:timelapps/navigation_rail.dart';
 export 'package:timelapps/theme_provider.dart';
+export 'package:timelapps/home_screen.dart';
+export 'package:timelapps/timer_painter.dart';
