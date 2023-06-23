@@ -3,22 +3,6 @@ import 'dart:math';
 
 import 'package:timelapps/all_imports.dart';
 
-final StateProvider<double> secondsProvider = StateProvider<double>((ref) {
-  return 15;
-});
-
-final StateProvider<double> minutesProvider = StateProvider<double>((ref) {
-  return 15;
-});
-
-final StateProvider<bool> isRunningProvider = StateProvider<bool>((ref) {
-  return false;
-});
-
-final StateProvider<bool> isMinutesProvider = StateProvider<bool>((ref) {
-  return true;
-});
-
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
@@ -45,18 +29,10 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void startTimer() {
-    if (secondsTimer != null) {
-      secondsTimer!.cancel();
-    }
-
-    if (minutesTimer != null) {
-      minutesTimer!.cancel();
-    }
-
     ref.read(isRunningProvider.notifier).state = true;
 
-    if (ref.watch(isMinutesProvider)) {
-      minutesTimer = Timer.periodic(const Duration(minutes: 1), (timer) {
+    if (ref.watch(isMinutesShownProvider)) {
+      minutesTimer = Timer.periodic(const Duration(minutes: 1), (minutesTimer) {
         if (ref.watch(minutesProvider) > 1) {
           ref.read(minutesProvider.notifier).state--;
         } else {
@@ -65,7 +41,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         }
       });
     } else {
-      secondsTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      secondsTimer = Timer.periodic(const Duration(seconds: 1), (secondsTimer) {
         if (ref.watch(secondsProvider) > 1) {
           ref.read(secondsProvider.notifier).state--;
         } else {
@@ -93,8 +69,13 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
 
       // Convert angle to degrees and add 90 (so 0 degrees is at top)
       // Then mod by 360 to get value from 0-360, and divide by 6 to get minutes
-      ref.read(secondsProvider.notifier).state =
-          (((touchAngle * 180 / pi) + 90) % 360) / 6;
+      if (ref.watch(isMinutesShownProvider)) {
+        ref.read(minutesProvider.notifier).state =
+            (((touchAngle * 180 / pi) + 90) % 360) / 6;
+      } else {
+        ref.read(secondsProvider.notifier).state =
+            (((touchAngle * 180 / pi) + 90) % 360) / 6;
+      }
     }
   }
 
@@ -122,16 +103,17 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                       CustomPaint(
                         size: circleSize,
                         painter: TimerPainter(
-                          timerValue: ref.watch(secondsProvider),
+                          timerValue: ref.watch(isMinutesShownProvider)
+                              ? ref.watch(minutesProvider)
+                              : ref.watch(secondsProvider),
                           maxValue: 60,
                         ),
                       ),
-                      ref.watch(isMinutesProvider)
+                      ref.watch(isMinutesShownProvider)
                           ? ref.watch(isTimeShownProvider)
                               ? Text(
                                   ref.watch(minutesProvider).toStringAsFixed(0),
-                                  style: const TextStyle(fontSize: 50),
-                                )
+                                  style: const TextStyle(fontSize: 50))
                               : const SizedBox()
                           : ref.watch(isTimeShownProvider)
                               ? Text(

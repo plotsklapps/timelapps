@@ -43,8 +43,8 @@ NavigationRail buildNavigationRail(WidgetRef ref) {
       ),
       NavigationRailDestination(
         icon: ref.watch(isMinutesShownProvider)
-            ? const Icon(Icons.check_circle)
-            : const Icon(Icons.remove_circle),
+            ? const Icon(Icons.play_arrow)
+            : const Icon(Icons.fast_forward),
         label: const Text('Duration'),
       ),
       NavigationRailDestination(
