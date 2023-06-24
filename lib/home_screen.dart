@@ -95,7 +95,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
           // Only show the navigation rail when the timer is NOT running
           ref.watch(isRunningProvider)
               ? const SizedBox()
-              : buildNavigationRail(ref).animate().slideX(
+              : buildNavigationRail(context, ref).animate().slideX(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeOut),
           // Use an expanded widget to fill the remaining space
