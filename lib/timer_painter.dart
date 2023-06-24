@@ -16,7 +16,9 @@ class TimerPainter extends CustomPainter {
     final fillPercentage = timerValue / maxValue;
 
     final paint = Paint()
-      ..color = ref.watch(isColorRedProvider) ? FlexColor.redWineLightPrimary : FlexColor.blueLightPrimary
+      ..color = ref.watch(isColorRedProvider)
+          ? FlexColor.redWineLightPrimary
+          : FlexColor.moneyLightPrimary
       ..style = PaintingStyle.stroke
       ..strokeWidth = 80.0;
 
