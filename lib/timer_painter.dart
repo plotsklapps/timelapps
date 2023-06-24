@@ -5,8 +5,9 @@ import 'package:timelapps/all_imports.dart';
 class TimerPainter extends CustomPainter {
   final double timerValue;
   final double maxValue;
+  final WidgetRef ref;
 
-  TimerPainter({this.timerValue = 0, this.maxValue = 60});
+  TimerPainter(this.ref, {this.timerValue = 0, this.maxValue = 60});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -15,7 +16,7 @@ class TimerPainter extends CustomPainter {
     final fillPercentage = timerValue / maxValue;
 
     final paint = Paint()
-      ..color = FlexColor.redWineLightPrimary
+      ..color = ref.watch(isColorRedProvider) ? FlexColor.redWineLightPrimary : FlexColor.blueLightPrimary
       ..style = PaintingStyle.stroke
       ..strokeWidth = 80.0;
 

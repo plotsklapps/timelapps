@@ -16,6 +16,8 @@ dependencies:
   flutter_riverpod: ^2.3.6
   google_fonts: ^5.1.0
   firebase_core: ^2.14.0
+  font_awesome_flutter: ^10.4.0
+  flutter_animate: ^4.2.0
 
 dev_dependencies:
   flutter_test:

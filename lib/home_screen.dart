@@ -83,55 +83,63 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     bool isRunning = ref.watch(isRunningProvider);
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(right: 32.0),
-        child: Row(
-          children: [
-            isRunning ? const SizedBox() : buildNavigationRail(ref),
-            Expanded(
-              child: LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                final circleSize =
-                    Size(constraints.maxWidth, constraints.maxHeight);
-                return GestureDetector(
-                  onPanUpdate: (details) {
-                    onDragUpdate(details, circleSize);
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CustomPaint(
-                        size: circleSize,
-                        painter: TimerPainter(
-                          timerValue: ref.watch(isMinutesShownProvider)
-                              ? ref.watch(minutesProvider)
-                              : ref.watch(secondsProvider),
-                          maxValue: 60,
-                        ),
+      body: Row(
+        children: [
+          isRunning
+              ? const SizedBox()
+              : buildNavigationRail(ref).animate().slideX(
+                  duration: const Duration(milliseconds: 1000),
+                  curve: Curves.easeOut),
+          Expanded(
+            child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              final circleSize =
+                  Size(constraints.maxWidth, constraints.maxHeight);
+              return GestureDetector(
+                onPanUpdate: (details) {
+                  onDragUpdate(details, circleSize);
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CustomPaint(
+                      size: circleSize,
+                      painter: TimerPainter(
+                        ref,
+                        timerValue: ref.watch(isMinutesShownProvider)
+                            ? ref.watch(minutesProvider)
+                            : ref.watch(secondsProvider),
+                        maxValue: 60,
                       ),
-                      ref.watch(isMinutesShownProvider)
-                          ? ref.watch(isTimeShownProvider)
-                              ? Text(
-                                  ref.watch(minutesProvider).toStringAsFixed(0),
-                                  style: const TextStyle(fontSize: 50))
-                              : const SizedBox()
-                          : ref.watch(isTimeShownProvider)
-                              ? Text(
-                                  ref.watch(secondsProvider).toStringAsFixed(0),
-                                  style: const TextStyle(fontSize: 50))
-                              : const SizedBox(),
-                    ],
-                  ),
-                );
-              }),
-            ),
-          ],
-        ),
+                    ),
+                    ref.watch(isMinutesShownProvider)
+                        ? ref.watch(isTimeShownProvider)
+                            ? Text(
+                                ref.watch(minutesProvider).toStringAsFixed(0),
+                                style: const TextStyle(fontSize: 50))
+                            : const SizedBox()
+                        : ref.watch(isTimeShownProvider)
+                            ? Text(
+                                ref.watch(secondsProvider).toStringAsFixed(0),
+                                style: const TextStyle(fontSize: 50))
+                            : const SizedBox(),
+                  ],
+                ),
+              );
+            }),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: isRunning ? stopTimer : startTimer,
-        label: Text(isRunning ? 'Stop' : 'Start'),
-        icon: Icon(isRunning ? Icons.stop : Icons.play_arrow),
+        label: Text(
+          isRunning ? 'STOP' : 'START',
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        icon: Icon(isRunning ? FontAwesomeIcons.stop : FontAwesomeIcons.play),
       ),
     );
   }

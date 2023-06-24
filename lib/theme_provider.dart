@@ -32,6 +32,11 @@ final StateProvider<FlexScheme> flexSchemeProvider =
   }
 });
 
+// Bool provider for red/blue color of the TimerPainter
+final StateProvider<bool> isColorRedProvider = StateProvider<bool>((ref) {
+  return true;
+});
+
 // Bool provider for questrial/bebas neue font
 final StateProvider<bool> isFontQuestrialProvider = StateProvider<bool>((ref) {
   return true;
