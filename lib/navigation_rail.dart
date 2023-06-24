@@ -33,47 +33,51 @@ NavigationRail buildNavigationRail(
         showModalBottomSheet(
             context: context,
             builder: (context) {
-              return SizedBox(
-                height: 300,
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        'Other options',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8),
+                    child: Text(
+                      'Other options',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const Divider(),
-                    ListTile(
-                      leading: const Icon(FontAwesomeIcons.globe),
-                      title: const Text('Language'),
-                      onTap: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, '/language');
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(FontAwesomeIcons.info),
-                      title: const Text('About'),
-                      onTap: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, '/about');
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(FontAwesomeIcons.deleteLeft),
-                      title: const Text('Logout'),
-                      onTap: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, '/logout');
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(FontAwesomeIcons.globe),
+                    title: const Text('Language'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: const Text('Other languages coming soon!'),
+                        behavior: SnackBarBehavior.floating,
+                        action: SnackBarAction(
+                          label: 'OK',
+                          onPressed: () {},
+                        ),
+                      ));
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(FontAwesomeIcons.circleInfo),
+                    title: const Text('About'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const AboutScreen();
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ],
               );
             });
       }
