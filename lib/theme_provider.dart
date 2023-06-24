@@ -106,7 +106,7 @@ final StateProvider<ThemeData> themeLightProvider =
   );
 });
 
-// ThemeData provider for light theme, the colorscheme is based on
+// ThemeData provider for dark theme, the colorscheme is based on
 // flexSchemeProvider
 final StateProvider<ThemeData> themeDarkProvider =
     StateProvider<ThemeData>((ref) {
