@@ -183,19 +183,35 @@ class DualScreenState extends ConsumerState<DualScreen> {
                                 // see the time or not.
                                 if (ref.watch(isMinutesShownProvider))
                                   ref.watch(isTimeShownProvider)
-                                      ? Text(
-                                          ref
-                                              .watch(minutesProvider)
-                                              .toStringAsFixed(0),
-                                          style: const TextStyle(fontSize: 50))
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Text>[
+                                            Text(
+                                                ref
+                                                    .watch(minutesProvider)
+                                                    .toStringAsFixed(0),
+                                                style: const TextStyle(
+                                                    fontSize: 50)),
+                                            const Text('m'),
+                                          ],
+                                        )
                                       : const SizedBox()
                                 else
                                   ref.watch(isTimeShownProvider)
-                                      ? Text(
-                                          ref
-                                              .watch(secondsProvider)
-                                              .toStringAsFixed(0),
-                                          style: const TextStyle(fontSize: 50))
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Text>[
+                                            Text(
+                                                ref
+                                                    .watch(secondsProvider)
+                                                    .toStringAsFixed(0),
+                                                style: const TextStyle(
+                                                    fontSize: 50)),
+                                            const Text('s'),
+                                          ],
+                                        )
                                       : const SizedBox(),
                               ],
                             ),

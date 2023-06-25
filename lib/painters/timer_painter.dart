@@ -29,7 +29,17 @@ class TimerPainter extends CustomPainter {
       ..strokeWidth = 80.0;
 
     // This is where the minute markers get their parameters.
-    final Paint markerPaint = Paint()..strokeWidth = 2;
+    final Paint markerPaint = Paint()
+      ..strokeWidth = 2
+      ..color = ref.watch(isThemeGreenProvider) &&
+              ref.watch(isThemeLightProvider)
+          ? FlexColor.moneyLightPrimary
+          : ref.watch(isThemeGreenProvider) && !ref.watch(isThemeLightProvider)
+              ? FlexColor.moneyDarkPrimary
+              : !ref.watch(isThemeGreenProvider) &&
+                      ref.watch(isThemeLightProvider)
+                  ? FlexColor.redWineLightPrimary
+                  : FlexColor.redWineDarkPrimary;
     const double markerLength = 20.0;
     final int markerCount = maxValue.toInt();
 
