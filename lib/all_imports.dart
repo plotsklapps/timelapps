@@ -18,3 +18,5 @@ export 'package:timelapps/components/navigation_bar.dart';
 export 'package:timelapps/screens/home_screen.dart';
 export 'package:timelapps/screens/noise_screen.dart';
 export 'package:timelapps/providers/trafficlight_provider.dart';
+export 'package:timelapps/screens/dual_screen.dart';
+export 'package:timelapps/components/dualnavigation_rail.dart';

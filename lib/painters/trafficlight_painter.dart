@@ -54,7 +54,8 @@ class TrafficLightPainter extends CustomPainter {
           radius: lightRadius));
 
     // Draw red light
-    lightOnPaint.color = redOn ? Colors.red : Colors.red.shade800;
+    lightOnPaint.color =
+        redOn ? FlexColor.redWineLightPrimary : Colors.red.shade800;
     canvas.drawCircle(Offset(centerX, centerY - bodyHeight / 3), lightRadius,
         redOn ? lightOnPaint : lightOffPaint);
     if (redOn) {
@@ -69,7 +70,8 @@ class TrafficLightPainter extends CustomPainter {
     }
 
 // Draw yellow light
-    lightOnPaint.color = yellowOn ? Colors.yellow : Colors.yellow.shade800;
+    lightOnPaint.color =
+        yellowOn ? FlexColor.amberLightPrimary : Colors.yellow.shade800;
     canvas.drawCircle(Offset(centerX, centerY), lightRadius,
         yellowOn ? lightOnPaint : lightOffPaint);
     if (yellowOn) {
@@ -83,7 +85,8 @@ class TrafficLightPainter extends CustomPainter {
     }
 
 // Draw green light
-    lightOnPaint.color = greenOn ? Colors.green : Colors.green.shade800;
+    lightOnPaint.color =
+        greenOn ? FlexColor.moneyDarkPrimary : Colors.green.shade800;
     canvas.drawCircle(Offset(centerX, centerY + bodyHeight / 3), lightRadius,
         greenOn ? lightOnPaint : lightOffPaint);
     if (greenOn) {

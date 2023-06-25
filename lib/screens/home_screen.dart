@@ -13,6 +13,7 @@ class HomeScreen extends ConsumerWidget {
         body: <Widget>[
           const TimeTimerScreen(),
           const NoiseScreen(),
+          const DualScreen(),
         ][ref.watch(currentPageIndexProvider)],
         // Only show the navigation bar when the timer is NOT running
         bottomNavigationBar: ref.watch(isRunningProvider)
