@@ -23,7 +23,7 @@ class MainEntry extends ConsumerWidget {
       theme: ref.watch(themeLightProvider),
       darkTheme: ref.watch(themeDarkProvider),
       themeMode: ref.watch(themeModeProvider),
-      home: const HomeScreen(),
+      home: const TimeTimerScreen(),
     );
   }
 }

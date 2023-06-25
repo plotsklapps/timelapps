@@ -3,16 +3,21 @@ import 'dart:math';
 
 import 'package:timelapps/all_imports.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+// NavigationBar index provider
+final StateProvider<int> currentPageIndexProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
+class TimeTimerScreen extends ConsumerStatefulWidget {
+  const TimeTimerScreen({super.key});
 
   @override
-  HomeScreenState createState() {
-    return HomeScreenState();
+  TimeTimerScreenState createState() {
+    return TimeTimerScreenState();
   }
 }
 
-class HomeScreenState extends ConsumerState<HomeScreen> {
+class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
   // We need two timers, one for seconds, one for minutes, chosen by
   // the user in the navigationrail. They are nullable because they
   // are only initialized when the timer is running.
@@ -25,6 +30,42 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     secondsTimer?.cancel();
     minutesTimer?.cancel();
     super.dispose();
+  }
+
+  void startTimer() {
+    // First, set the 'Timer is running' boolean to true
+    ref.read(isRunningProvider.notifier).state = true;
+
+    // Second, check if the user wants to see minutes or seconds, then
+    // start the corresponding timer. When the timer reaches 0, call
+    // stopTimer() to stop the timer and reset the 'Timer is running' boolean.
+    if (ref.watch(isMinutesShownProvider)) {
+      minutesTimer = Timer.periodic(const Duration(minutes: 1), (_) {
+        if (ref.watch(minutesProvider) > 1) {
+          ref.read(minutesProvider.notifier).state--;
+        } else {
+          ref.read(minutesProvider.notifier).state = 0;
+          stopTimer();
+        }
+      });
+    } else {
+      secondsTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+        if (ref.watch(secondsProvider) > 1) {
+          ref.read(secondsProvider.notifier).state--;
+        } else {
+          ref.read(secondsProvider.notifier).state = 0;
+          stopTimer();
+        }
+      });
+    }
+  }
+
+  void stopTimer() {
+    // First, set the 'Timer is running' boolean to false
+    ref.read(isRunningProvider.notifier).state = false;
+    // Second, cancel the active timers.
+    secondsTimer?.cancel();
+    minutesTimer?.cancel();
   }
 
   void onDragUpdate(DragUpdateDetails details, Size circleSize) {
@@ -61,7 +102,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
               ? const SizedBox()
               : buildNavigationRail(context, ref).animate().slideX(
                   duration: const Duration(milliseconds: 1000),
-                  curve: Curves.easeOut),
+                  curve: Curves.easeInOut),
           // Use an expanded widget to fill the remaining space
           Expanded(
             child: LayoutBuilder(
@@ -111,20 +152,38 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ],
       ),
+      // Only show the navigation bar when the timer is NOT running
+      bottomNavigationBar: ref.watch(isRunningProvider)
+          ? const SizedBox()
+          : NavigationBar(
+              onDestinationSelected: (int index) {
+                ref.read(currentPageIndexProvider.notifier).state = index;
+              },
+              selectedIndex: ref.watch(currentPageIndexProvider),
+              destinations: const <Widget>[
+                NavigationDestination(
+                  icon: Icon(FontAwesomeIcons.clock),
+                  selectedIcon: Icon(FontAwesomeIcons.check),
+                  label: 'TimeTimer',
+                ),
+                NavigationDestination(
+                  icon: Icon(FontAwesomeIcons.trafficLight),
+                  selectedIcon: Icon(FontAwesomeIcons.check),
+                  label: 'Noise',
+                ),
+                NavigationDestination(
+                  icon: Icon(FontAwesomeIcons.clone),
+                  selectedIcon: Icon(FontAwesomeIcons.check),
+                  label: 'Both',
+                ),
+              ],
+            ).animate().slideX(
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.easeInOut),
       floatingActionButton: FloatingActionButton.extended(
         // Check the 'Timer is running' boolean to see if the timer is running.
         // If it is, show the stop button, otherwise show the start button.
-        onPressed: ref.watch(isRunningProvider)
-            ? TimerFunction(
-                ref,
-                minutesTimer,
-                secondsTimer,
-              ).stopTimer
-            : TimerFunction(
-                ref,
-                minutesTimer,
-                secondsTimer,
-              ).startTimer,
+        onPressed: ref.watch(isRunningProvider) ? stopTimer : startTimer,
         label: Text(
           ref.watch(isRunningProvider) ? 'STOP' : 'START',
           style: const TextStyle(
