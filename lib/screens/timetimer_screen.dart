@@ -100,7 +100,7 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
           // Only show the navigation rail when the timer is NOT running
           ref.watch(isRunningProvider)
               ? const SizedBox()
-              : buildNavigationRail(context, ref).animate().slideX(
+              : buildTimerNavigationRail(context, ref).animate().slideX(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeInOut),
           // Use an expanded widget to fill the remaining space

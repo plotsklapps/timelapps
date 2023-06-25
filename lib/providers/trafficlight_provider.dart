@@ -15,3 +15,27 @@ final StateProvider<bool> isYellowOnProvider = StateProvider<bool>((ref) {
 final StateProvider<bool> isGreenOnProvider = StateProvider<bool>((ref) {
   return false;
 });
+
+final StateProvider<bool> isOneOnProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
+final StateProvider<bool> isTwoOnProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
+final StateProvider<bool> isThreeOnProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
+final StateProvider<bool> isFourOnProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
+final StateProvider<bool> isFiveOnProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
+final StateProvider<bool> isSixOnProvider = StateProvider<bool>((ref) {
+  return false;
+});
