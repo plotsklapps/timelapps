@@ -95,9 +95,23 @@ class DualScreenState extends ConsumerState<DualScreen> {
           if (ref.watch(isRunningProvider))
             const SizedBox()
           else
-            buildDualNavigationRail(context, ref).animate().slideX(
-                duration: const Duration(milliseconds: 1000),
-                curve: Curves.easeInOut),
+            LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraint) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints:
+                        BoxConstraints(minHeight: constraint.maxHeight),
+                    child: IntrinsicHeight(
+                      child: buildDualNavigationRail(context, ref)
+                          .animate()
+                          .slideX(
+                              duration: const Duration(milliseconds: 1000),
+                              curve: Curves.easeInOut),
+                    ),
+                  ),
+                );
+              },
+            ),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

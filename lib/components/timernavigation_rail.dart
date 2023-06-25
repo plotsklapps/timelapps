@@ -1,5 +1,10 @@
 import 'package:timelapps/all_imports.dart';
 
+final StateProvider<int> selectedTimerRailIndexProvider =
+    StateProvider<int>((StateProviderRef<int> ref) {
+  return 0;
+});
+
 // This navigationrail holds multiple options for the user to select.
 // The user can select themeMode, themeColor, circleColor, font, minutes/
 // seconds and show timer or not. All values are stored in their respective
@@ -9,8 +14,9 @@ NavigationRail buildTimerNavigationRail(
   WidgetRef ref,
 ) {
   return NavigationRail(
-    selectedIndex: 0,
+    selectedIndex: ref.watch(selectedTimerRailIndexProvider),
     onDestinationSelected: (int index) async {
+      ref.read(selectedTimerRailIndexProvider.notifier).state = index;
       if (index == 0) {
         ref.read(isThemeLightProvider.notifier).state =
             !ref.watch(isThemeLightProvider);

@@ -1,5 +1,10 @@
 import 'package:timelapps/all_imports.dart';
 
+final StateProvider<int> selectedNoiseRailIndexProvider =
+    StateProvider<int>((StateProviderRef<int> ref) {
+  return 0;
+});
+
 // This navigationrail holds multiple options for the user to select.
 // The user can select themeMode, themeColor, circleColor, font, minutes/
 // seconds and show timer or not. All values are stored in their respective
@@ -9,8 +14,9 @@ NavigationRail buildNoiseNavigationRail(
   WidgetRef ref,
 ) {
   return NavigationRail(
-    selectedIndex: 0,
+    selectedIndex: ref.watch(selectedNoiseRailIndexProvider),
     onDestinationSelected: (int index) {
+      ref.read(selectedNoiseRailIndexProvider.notifier).state = index;
       if (index == 0) {
         ref.read(isOneOnProvider.notifier).state = !ref.watch(isOneOnProvider);
         ref.read(isTwoOnProvider.notifier).state = false;
@@ -82,37 +88,37 @@ NavigationRail buildNoiseNavigationRail(
       NavigationRailDestination(
         icon: ref.watch(isOneOnProvider)
             ? const Icon(FontAwesomeIcons.check)
-            : const Icon(FontAwesomeIcons.one),
+            : const Icon(FontAwesomeIcons.bullhorn),
         label: const Text('ONE'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isTwoOnProvider)
             ? const Icon(FontAwesomeIcons.check)
-            : const Icon(FontAwesomeIcons.two),
+            : const Icon(FontAwesomeIcons.personChalkboard),
         label: const Text('TWO'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isThreeOnProvider)
             ? const Icon(FontAwesomeIcons.check)
-            : const Icon(FontAwesomeIcons.three),
+            : const Icon(FontAwesomeIcons.volumeHigh),
         label: const Text('THREE'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isFourOnProvider)
             ? const Icon(FontAwesomeIcons.check)
-            : const Icon(FontAwesomeIcons.four),
+            : const Icon(FontAwesomeIcons.volumeLow),
         label: const Text('FOUR'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isFiveOnProvider)
             ? const Icon(FontAwesomeIcons.check)
-            : const Icon(FontAwesomeIcons.five),
+            : const Icon(FontAwesomeIcons.volumeOff),
         label: const Text('FIVE'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isSixOnProvider)
             ? const Icon(FontAwesomeIcons.check)
-            : const Icon(FontAwesomeIcons.six),
+            : const Icon(FontAwesomeIcons.volumeXmark),
         label: const Text('SIX'),
       ),
     ],
