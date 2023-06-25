@@ -3,16 +3,21 @@ import 'dart:math';
 
 import 'package:timelapps/all_imports.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+// NavigationBar index provider
+final StateProvider<int> currentPageIndexProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
+class TimeTimerScreen extends ConsumerStatefulWidget {
+  const TimeTimerScreen({super.key});
 
   @override
-  HomeScreenState createState() {
-    return HomeScreenState();
+  TimeTimerScreenState createState() {
+    return TimeTimerScreenState();
   }
 }
 
-class HomeScreenState extends ConsumerState<HomeScreen> {
+class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
   // We need two timers, one for seconds, one for minutes, chosen by
   // the user in the navigationrail. They are nullable because they
   // are only initialized when the timer is running.
@@ -39,7 +44,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         if (ref.watch(minutesProvider) > 1) {
           ref.read(minutesProvider.notifier).state--;
         } else {
-          ref.read(secondsProvider.notifier).state = 0;
+          ref.read(minutesProvider.notifier).state = 0;
           stopTimer();
         }
       });
@@ -95,9 +100,9 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
           // Only show the navigation rail when the timer is NOT running
           ref.watch(isRunningProvider)
               ? const SizedBox()
-              : buildNavigationRail(context, ref).animate().slideX(
+              : buildTimerNavigationRail(context, ref).animate().slideX(
                   duration: const Duration(milliseconds: 1000),
-                  curve: Curves.easeOut),
+                  curve: Curves.easeInOut),
           // Use an expanded widget to fill the remaining space
           Expanded(
             child: LayoutBuilder(

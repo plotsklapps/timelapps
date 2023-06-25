@@ -4,7 +4,7 @@ import 'package:timelapps/all_imports.dart';
 // The user can select themeMode, themeColor, circleColor, font, minutes/
 // seconds and show timer or not. All values are stored in their respective
 // Riverpod providers.
-NavigationRail buildNavigationRail(
+NavigationRail buildTimerNavigationRail(
   BuildContext context,
   WidgetRef ref,
 ) {
@@ -99,7 +99,7 @@ NavigationRail buildNavigationRail(
       NavigationRailDestination(
         icon: ref.watch(isColorRedProvider)
             ? const Icon(FontAwesomeIcons.solidHeart)
-            : const Icon(FontAwesomeIcons.water),
+            : const Icon(FontAwesomeIcons.leaf),
         label: const Text('Color'),
       ),
       NavigationRailDestination(
