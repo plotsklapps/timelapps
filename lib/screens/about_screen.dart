@@ -30,7 +30,7 @@ class AboutScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               const Text(
                 'TIMELAPPS by PLOTSKLAPPS',
                 style: TextStyle(
@@ -40,23 +40,20 @@ class AboutScreen extends StatelessWidget {
               ),
               const Divider(),
               const Text(
-                'This app is made with :heart: by PLOTSKLAPPS with Flutter & Dart. It is 100% open source and free forever. We hope you enjoy using this app as much as we enjoyed making it!',
+                '''
+This app is made with :heart: by PLOTSKLAPPS with Flutter & Dart. It is 100% open source and free forever. We hope you enjoy using this app as much as we enjoyed making it!''',
                 textAlign: TextAlign.center,
               ),
               const Divider(),
               ListTile(
                 leading: const Icon(FontAwesomeIcons.code),
                 title: const Text('Source code'),
-                onTap: () {
-                  launchSourceCode();
-                },
+                onTap: launchSourceCode,
               ),
               ListTile(
                 leading: const Icon(FontAwesomeIcons.heartCircleCheck),
                 title: const Text('Donate'),
-                onTap: () {
-                  launchBuyMeACoffee();
-                },
+                onTap: launchBuyMeACoffee,
               ),
               const Divider(),
             ],

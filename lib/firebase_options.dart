@@ -2,7 +2,7 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_classes_with_only_static_members
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+    show TargetPlatform, defaultTargetPlatform, kIsWeb;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -36,6 +36,7 @@ class DefaultFirebaseOptions {
           'DefaultFirebaseOptions have not been configured for linux - '
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
+      // ignore: no_default_cases
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -67,7 +68,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '309005438799',
     projectId: 'plotsklapps-timelapps',
     storageBucket: 'plotsklapps-timelapps.appspot.com',
-    iosClientId: '309005438799-4pvka8t7dopp94beruq8s609icj5gfrp.apps.googleusercontent.com',
+    iosClientId:
+        '309005438799-4pvka8t7dopp94beruq8s609icj5gfrp.apps.googleusercontent.com',
     iosBundleId: 'dev.plotsklapps.timelapps',
   );
 
@@ -77,7 +79,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '309005438799',
     projectId: 'plotsklapps-timelapps',
     storageBucket: 'plotsklapps-timelapps.appspot.com',
-    iosClientId: '309005438799-21o6rccd0ru1795ujf0nvoit98qok10j.apps.googleusercontent.com',
+    iosClientId:
+        '309005438799-21o6rccd0ru1795ujf0nvoit98qok10j.apps.googleusercontent.com',
     iosBundleId: 'dev.plotsklapps.timelapps.RunnerTests',
   );
 }

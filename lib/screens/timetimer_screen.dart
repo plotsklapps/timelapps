@@ -4,7 +4,8 @@ import 'dart:math';
 import 'package:timelapps/all_imports.dart';
 
 // NavigationBar index provider
-final StateProvider<int> currentPageIndexProvider = StateProvider<int>((ref) {
+final StateProvider<int> currentPageIndexProvider =
+    StateProvider<int>((StateProviderRef<int> ref) {
   return 0;
 });
 
@@ -72,10 +73,10 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
     // Only if the timer is NOT running, the timer can be adjusted
     if (!ref.watch(isRunningProvider)) {
       // Calculate the angle of the touch relative to the center of the circle
-      final touchPositionFromCenter = details.localPosition -
+      final Offset touchPositionFromCenter = details.localPosition -
           Offset(circleSize.width / 2, circleSize.height / 2);
       // Calculate the angle of the touch relative to the axes.
-      final touchAngle =
+      final double touchAngle =
           atan2(touchPositionFromCenter.dy, touchPositionFromCenter.dx);
 
       // First, check if the user wants to see minutes or seconds, then
@@ -96,29 +97,30 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
-        children: [
+        children: <Widget>[
           // Only show the navigation rail when the timer is NOT running
-          ref.watch(isRunningProvider)
-              ? const SizedBox()
-              : buildTimerNavigationRail(context, ref).animate().slideX(
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.easeInOut),
+          if (ref.watch(isRunningProvider))
+            const SizedBox()
+          else
+            buildTimerNavigationRail(context, ref).animate().slideX(
+                duration: const Duration(milliseconds: 1000),
+                curve: Curves.easeInOut),
           // Use an expanded widget to fill the remaining space
           Expanded(
             child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
               // Get the max width and height of the screen and use it
               // to calculate the max size of the circle.
-              final circleSize =
+              final Size circleSize =
                   Size(constraints.maxWidth, constraints.maxHeight);
               return GestureDetector(
                 // When the user drags on the screen, call onDragUpdate().
-                onPanUpdate: (details) {
+                onPanUpdate: (DragUpdateDetails details) {
                   onDragUpdate(details, circleSize);
                 },
                 child: Stack(
                   alignment: Alignment.center,
-                  children: [
+                  children: <Widget>[
                     CustomPaint(
                       size: circleSize,
                       painter: TimerPainter(
@@ -134,17 +136,16 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
                     ),
                     // Check if the user wants to see minutes or seconds,
                     // then check if the user wants to see the time or not.
-                    ref.watch(isMinutesShownProvider)
-                        ? ref.watch(isTimeShownProvider)
-                            ? Text(
-                                ref.watch(minutesProvider).toStringAsFixed(0),
-                                style: const TextStyle(fontSize: 50))
-                            : const SizedBox()
-                        : ref.watch(isTimeShownProvider)
-                            ? Text(
-                                ref.watch(secondsProvider).toStringAsFixed(0),
-                                style: const TextStyle(fontSize: 50))
-                            : const SizedBox(),
+                    if (ref.watch(isMinutesShownProvider))
+                      ref.watch(isTimeShownProvider)
+                          ? Text(ref.watch(minutesProvider).toStringAsFixed(0),
+                              style: const TextStyle(fontSize: 50))
+                          : const SizedBox()
+                    else
+                      ref.watch(isTimeShownProvider)
+                          ? Text(ref.watch(secondsProvider).toStringAsFixed(0),
+                              style: const TextStyle(fontSize: 50))
+                          : const SizedBox(),
                   ],
                 ),
               );

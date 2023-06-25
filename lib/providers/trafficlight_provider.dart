@@ -4,38 +4,47 @@ import 'package:timelapps/all_imports.dart';
 // they are provided by the user and used to update the UI and to perform
 // the trafficlight logic.
 
-final StateProvider<bool> isRedOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isRedOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return true;
 });
 
-final StateProvider<bool> isYellowOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isYellowOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isGreenOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isGreenOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isOneOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isOneOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isTwoOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isTwoOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isThreeOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isThreeOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isFourOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isFourOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isFiveOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isFiveOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isSixOnProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isSixOnProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });

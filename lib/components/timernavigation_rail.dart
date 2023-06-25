@@ -10,7 +10,7 @@ NavigationRail buildTimerNavigationRail(
 ) {
   return NavigationRail(
     selectedIndex: 0,
-    onDestinationSelected: (int index) {
+    onDestinationSelected: (int index) async {
       if (index == 0) {
         ref.read(isThemeLightProvider.notifier).state =
             !ref.watch(isThemeLightProvider);
@@ -30,12 +30,12 @@ NavigationRail buildTimerNavigationRail(
         ref.read(isTimeShownProvider.notifier).state =
             !ref.watch(isTimeShownProvider);
       } else if (index == 6) {
-        showModalBottomSheet(
+        await showModalBottomSheet<AlertDialog>(
             context: context,
-            builder: (context) {
+            builder: (BuildContext context) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: <Widget>[
                   const Padding(
                     padding: EdgeInsets.only(top: 8),
                     child: Text(
@@ -69,8 +69,8 @@ NavigationRail buildTimerNavigationRail(
                       Navigator.pop(context);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) {
+                        MaterialPageRoute<Widget>(
+                          builder: (BuildContext context) {
                             return const AboutScreen();
                           },
                         ),

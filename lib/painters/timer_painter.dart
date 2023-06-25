@@ -14,14 +14,14 @@ class TimerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Get some reference points
-    final center = Offset(size.width / 2, size.height / 2);
-    final radius = min(size.width, size.height) / 3;
-    final fillPercentage = timerValue / maxValue;
+    final Offset center = Offset(size.width / 2, size.height / 2);
+    final double radius = min(size.width, size.height) / 3;
+    final double fillPercentage = timerValue / maxValue;
 
     // This is where the draggable circle gets it's parameters.
     // Use the isColorRedProvider to determine the color of the draggable
     // circle.
-    final paint = Paint()
+    final Paint paint = Paint()
       ..color = ref.watch(isColorRedProvider)
           ? FlexColor.redWineLightPrimary
           : FlexColor.moneyLightPrimary
@@ -29,19 +29,19 @@ class TimerPainter extends CustomPainter {
       ..strokeWidth = 80.0;
 
     // This is where the minute markers get their parameters.
-    final markerPaint = Paint()..strokeWidth = 2;
-    const markerLength = 20.0;
-    final markerCount = maxValue.toInt();
+    final Paint markerPaint = Paint()..strokeWidth = 2;
+    const double markerLength = 20.0;
+    final int markerCount = maxValue.toInt();
 
     // Get the minute markers angles, start and end positions.
     // ChatGPT helped with the cos and sin functions.
     for (int i = 0; i < markerCount; i++) {
-      final markerAngle = (2 * pi / markerCount) * i - pi / 2;
-      final markerStart = Offset(
+      final double markerAngle = (2 * pi / markerCount) * i - pi / 2;
+      final Offset markerStart = Offset(
         center.dx + (radius - markerLength / 2) * cos(markerAngle),
         center.dy + (radius - markerLength / 2) * sin(markerAngle),
       );
-      final markerEnd = Offset(
+      final Offset markerEnd = Offset(
         center.dx + (radius + markerLength / 2) * cos(markerAngle),
         center.dy + (radius + markerLength / 2) * sin(markerAngle),
       );

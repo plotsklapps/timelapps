@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:timelapps/all_imports.dart';
-import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,7 +1,7 @@
 import 'package:timelapps/all_imports.dart';
 
 class NoiseScreen extends ConsumerStatefulWidget {
-  const NoiseScreen({Key? key}) : super(key: key);
+  const NoiseScreen({super.key});
 
   @override
   ConsumerState<NoiseScreen> createState() {
@@ -14,18 +14,19 @@ class NoiseScreenState extends ConsumerState<NoiseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
-        children: [
-          ref.watch(isRunningProvider)
-              ? const SizedBox()
-              : buildNoiseNavigationRail(context, ref).animate().slideX(
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.easeInOut),
+        children: <Widget>[
+          if (ref.watch(isRunningProvider))
+            const SizedBox()
+          else
+            buildNoiseNavigationRail(context, ref).animate().slideX(
+                duration: const Duration(milliseconds: 1000),
+                curve: Curves.easeInOut),
           Expanded(
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 // Get the max width and height of the available space
-                double maxWidth = constraints.maxWidth;
-                double maxHeight = constraints.maxHeight;
+                final double maxWidth = constraints.maxWidth;
+                final double maxHeight = constraints.maxHeight;
                 return Center(
                   child: CustomPaint(
                     size: Size(maxHeight, maxWidth),

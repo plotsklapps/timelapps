@@ -13,28 +13,29 @@ class TrafficLightPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var paint = Paint()
+    final Paint paint = Paint()
       ..color = Colors.grey.shade800
       ..style = PaintingStyle.fill;
 
-    var lightOnPaint = Paint()..style = PaintingStyle.fill;
+    final Paint lightOnPaint = Paint()..style = PaintingStyle.fill;
 
-    var lightOffPaint = Paint()
+    final Paint lightOffPaint = Paint()
       ..color = Colors.grey.shade600
       ..style = PaintingStyle.fill;
 
-    // Use a proportion of the size to define the dimensions of the lights and body
-    double bodyWidth = size.width * 0.3;
-    double bodyHeight = size.height * 0.9;
-    double lightRadius = bodyWidth * 0.3;
+    // Use a proportion of the size to define the dimensions of the lights
+    // and body
+    final double bodyWidth = size.width * 0.3;
+    final double bodyHeight = size.height * 0.9;
+    final double lightRadius = bodyWidth * 0.3;
 
     // Center of the canvas
-    double centerX = size.width / 2;
-    double centerY = size.height / 2;
+    final double centerX = size.width / 2;
+    final double centerY = size.height / 2;
 
     // Top-left position of the rectangle
-    double rectStartX = centerX - bodyWidth / 2;
-    double rectStartY = centerY - bodyHeight / 2;
+    final double rectStartX = centerX - bodyWidth / 2;
+    final double rectStartY = centerY - bodyHeight / 2;
 
     // Draw traffic light body with rounded corners
     canvas.drawRRect(
@@ -45,10 +46,10 @@ class TrafficLightPainter extends CustomPainter {
         paint);
 
     // Shimmer effect for active light
-    var shimmerPaint = Paint()
+    final Paint shimmerPaint = Paint()
       ..shader = RadialGradient(
-        colors: [Colors.white, Colors.white.withOpacity(0.0)],
-        stops: const [0.0, 0.8],
+        colors: <Color>[Colors.white, Colors.white.withOpacity(0.0)],
+        stops: const <double>[0.0, 0.8],
       ).createShader(Rect.fromCircle(
           center: Offset(centerX, centerY - bodyHeight / 3),
           radius: lightRadius));
@@ -60,8 +61,8 @@ class TrafficLightPainter extends CustomPainter {
         redOn ? lightOnPaint : lightOffPaint);
     if (redOn) {
       shimmerPaint.shader = RadialGradient(
-        colors: [Colors.white, Colors.white.withOpacity(0.0)],
-        stops: const [0.0, 0.8],
+        colors: <Color>[Colors.white, Colors.white.withOpacity(0.0)],
+        stops: const <double>[0.0, 0.8],
       ).createShader(Rect.fromCircle(
           center: Offset(centerX, centerY - bodyHeight / 3),
           radius: lightRadius * 0.75));
@@ -76,8 +77,8 @@ class TrafficLightPainter extends CustomPainter {
         yellowOn ? lightOnPaint : lightOffPaint);
     if (yellowOn) {
       shimmerPaint.shader = RadialGradient(
-        colors: [Colors.white, Colors.white.withOpacity(0.0)],
-        stops: const [0.0, 0.8],
+        colors: <Color>[Colors.white, Colors.white.withOpacity(0.0)],
+        stops: const <double>[0.0, 0.8],
       ).createShader(Rect.fromCircle(
           center: Offset(centerX, centerY), radius: lightRadius * 0.75));
       canvas.drawCircle(
@@ -91,8 +92,8 @@ class TrafficLightPainter extends CustomPainter {
         greenOn ? lightOnPaint : lightOffPaint);
     if (greenOn) {
       shimmerPaint.shader = RadialGradient(
-        colors: [Colors.white, Colors.white.withOpacity(0.0)],
-        stops: const [0.0, 0.8],
+        colors: <Color>[Colors.white, Colors.white.withOpacity(0.0)],
+        stops: const <double>[0.0, 0.8],
       ).createShader(Rect.fromCircle(
           center: Offset(centerX, centerY + bodyHeight / 3),
           radius: lightRadius * 0.75));
@@ -103,7 +104,8 @@ class TrafficLightPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(TrafficLightPainter oldDelegate) {
-    // You might want to add more conditions here based on your actual requirements.
+    // You might want to add more conditions here based on your actual
+    // requirements.
     return oldDelegate.redOn != redOn ||
         oldDelegate.yellowOn != yellowOn ||
         oldDelegate.greenOn != greenOn;

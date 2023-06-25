@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:timelapps/all_imports.dart';
 
 class DualScreen extends ConsumerStatefulWidget {
-  const DualScreen({Key? key}) : super(key: key);
+  const DualScreen({super.key});
 
   @override
   ConsumerState<DualScreen> createState() {
@@ -67,10 +67,10 @@ class DualScreenState extends ConsumerState<DualScreen> {
     // Only if the timer is NOT running, the timer can be adjusted
     if (!ref.watch(isRunningProvider)) {
       // Calculate the angle of the touch relative to the center of the circle
-      final touchPositionFromCenter = details.localPosition -
+      final Offset touchPositionFromCenter = details.localPosition -
           Offset(circleSize.width / 2, circleSize.height / 2);
       // Calculate the angle of the touch relative to the axes.
-      final touchAngle =
+      final double touchAngle =
           atan2(touchPositionFromCenter.dy, touchPositionFromCenter.dx);
 
       // First, check if the user wants to see minutes or seconds, then
@@ -91,26 +91,28 @@ class DualScreenState extends ConsumerState<DualScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
-        children: [
-          ref.watch(isRunningProvider)
-              ? const SizedBox()
-              : buildDualNavigationRail(context, ref).animate().slideX(
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.easeInOut),
+        children: <Widget>[
+          if (ref.watch(isRunningProvider))
+            const SizedBox()
+          else
+            buildDualNavigationRail(context, ref).animate().slideX(
+                duration: const Duration(milliseconds: 1000),
+                curve: Curves.easeInOut),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
+              children: <Expanded>[
                 Expanded(
                   child: Row(
-                    children: [
+                    children: <Expanded>[
                       Expanded(
                         child: LayoutBuilder(
                           builder: (BuildContext context,
                               BoxConstraints constraints) {
-                            // Get the max width and height of the available space
-                            double maxWidth = constraints.maxWidth;
-                            double maxHeight = constraints.maxHeight;
+                            // Get the max width and height of the available
+                            // space
+                            final double maxWidth = constraints.maxWidth;
+                            final double maxHeight = constraints.maxHeight;
                             return Center(
                               child: CustomPaint(
                                 size: Size(maxHeight, maxWidth),
@@ -129,30 +131,32 @@ class DualScreenState extends ConsumerState<DualScreen> {
                 ),
                 Expanded(
                   child: Row(
-                    children: [
+                    children: <Expanded>[
                       // Use an expanded widget to fill the remaining space
                       Expanded(
                         child: LayoutBuilder(builder:
                             (BuildContext context, BoxConstraints constraints) {
-                          // Get the max width and height of the screen and use it
-                          // to calculate the max size of the circle.
-                          final circleSize =
+                          // Get the max width and height of the screen and use
+                          // it to calculate the max size of the circle.
+                          final Size circleSize =
                               Size(constraints.maxWidth, constraints.maxHeight);
                           return GestureDetector(
-                            // When the user drags on the screen, call onDragUpdate().
-                            onPanUpdate: (details) {
+                            // When the user drags on the screen, call
+                            // onDragUpdate().
+                            onPanUpdate: (DragUpdateDetails details) {
                               onDragUpdate(details, circleSize);
                             },
                             child: Stack(
                               alignment: Alignment.center,
-                              children: [
+                              children: <Widget>[
                                 CustomPaint(
                                   size: circleSize,
                                   painter: TimerPainter(
-                                    // ref is added to use Riverpod inside the widget.
+                                    // ref is added to use Riverpod inside the
+                                    // widget.
                                     ref,
-                                    // The timer value is either minutes or seconds,
-                                    // depending on the user's choice.
+                                    // The timer value is either minutes or
+                                    // seconds, depending on the user's choice.
                                     timerValue:
                                         ref.watch(isMinutesShownProvider)
                                             ? ref.watch(minutesProvider)
@@ -160,25 +164,25 @@ class DualScreenState extends ConsumerState<DualScreen> {
                                     maxValue: 60,
                                   ),
                                 ),
-                                // Check if the user wants to see minutes or seconds,
-                                // then check if the user wants to see the time or not.
-                                ref.watch(isMinutesShownProvider)
-                                    ? ref.watch(isTimeShownProvider)
-                                        ? Text(
-                                            ref
-                                                .watch(minutesProvider)
-                                                .toStringAsFixed(0),
-                                            style:
-                                                const TextStyle(fontSize: 50))
-                                        : const SizedBox()
-                                    : ref.watch(isTimeShownProvider)
-                                        ? Text(
-                                            ref
-                                                .watch(secondsProvider)
-                                                .toStringAsFixed(0),
-                                            style:
-                                                const TextStyle(fontSize: 50))
-                                        : const SizedBox(),
+                                // Check if the user wants to see minutes or
+                                // seconds, then check if the user wants to
+                                // see the time or not.
+                                if (ref.watch(isMinutesShownProvider))
+                                  ref.watch(isTimeShownProvider)
+                                      ? Text(
+                                          ref
+                                              .watch(minutesProvider)
+                                              .toStringAsFixed(0),
+                                          style: const TextStyle(fontSize: 50))
+                                      : const SizedBox()
+                                else
+                                  ref.watch(isTimeShownProvider)
+                                      ? Text(
+                                          ref
+                                              .watch(secondsProvider)
+                                              .toStringAsFixed(0),
+                                          style: const TextStyle(fontSize: 50))
+                                      : const SizedBox(),
                               ],
                             ),
                           );

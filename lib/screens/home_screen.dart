@@ -4,7 +4,7 @@ import 'package:timelapps/all_imports.dart';
 // IF the 'Timer is running' boolean is false. Rest of the content is shown via
 // the currentPageIndexProvider.
 class HomeScreen extends ConsumerWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

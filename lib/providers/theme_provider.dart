@@ -1,7 +1,8 @@
 import 'package:timelapps/all_imports.dart';
 
 // Bool provider for light/dark theme
-final StateProvider<bool> isThemeLightProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isThemeLightProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return true;
 });
 
@@ -17,7 +18,8 @@ final StateProvider<ThemeMode> themeModeProvider =
 });
 
 // Bool provider for green/red color scheme
-final StateProvider<bool> isThemeGreenProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isThemeGreenProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return true;
 });
 
@@ -33,12 +35,14 @@ final StateProvider<FlexScheme> flexSchemeProvider =
 });
 
 // Bool provider for red/blue color of the TimerPainter
-final StateProvider<bool> isColorRedProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isColorRedProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return true;
 });
 
 // Bool provider for questrial/bebas neue font
-final StateProvider<bool> isFontQuestrialProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isFontQuestrialProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return true;
 });
 
@@ -54,19 +58,21 @@ final StateProvider<String?> fontFamilyProvider =
 });
 
 // Bool provider to toggle between minutes and seconds
-final StateProvider<bool> isMinutesShownProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isMinutesShownProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return true;
 });
 
 // Bool provider to toggle Text widget showing minutes on/off
-final StateProvider<bool> isTimeShownProvider = StateProvider<bool>((ref) {
+final StateProvider<bool> isTimeShownProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
   return true;
 });
 
 // ThemeData provider for light theme, the colorscheme is based on
 // flexSchemeProvider
 final StateProvider<ThemeData> themeLightProvider =
-    StateProvider<ThemeData>((ref) {
+    StateProvider<ThemeData>((StateProviderRef<ThemeData> ref) {
   return FlexThemeData.light(
     scheme: ref.watch(flexSchemeProvider),
     surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
@@ -109,7 +115,7 @@ final StateProvider<ThemeData> themeLightProvider =
 // ThemeData provider for dark theme, the colorscheme is based on
 // flexSchemeProvider
 final StateProvider<ThemeData> themeDarkProvider =
-    StateProvider<ThemeData>((ref) {
+    StateProvider<ThemeData>((StateProviderRef<ThemeData> ref) {
   return FlexThemeData.dark(
     scheme: ref.watch(flexSchemeProvider),
     surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
