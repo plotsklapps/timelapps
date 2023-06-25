@@ -12,3 +12,4 @@ export 'package:timelapps/theme_provider.dart';
 export 'package:timelapps/timer_painter.dart';
 export 'package:timelapps/timer_provider.dart';
 export 'package:url_launcher/url_launcher.dart';
+export 'package:timelapps/timer_function.dart';

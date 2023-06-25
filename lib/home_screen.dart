@@ -27,42 +27,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     super.dispose();
   }
 
-  void startTimer() {
-    // First, set the 'Timer is running' boolean to true
-    ref.read(isRunningProvider.notifier).state = true;
-
-    // Second, check if the user wants to see minutes or seconds, then
-    // start the corresponding timer. When the timer reaches 0, call
-    // stopTimer() to stop the timer and reset the 'Timer is running' boolean.
-    if (ref.watch(isMinutesShownProvider)) {
-      minutesTimer = Timer.periodic(const Duration(minutes: 1), (_) {
-        if (ref.watch(minutesProvider) > 1) {
-          ref.read(minutesProvider.notifier).state--;
-        } else {
-          ref.read(secondsProvider.notifier).state = 0;
-          stopTimer();
-        }
-      });
-    } else {
-      secondsTimer = Timer.periodic(const Duration(seconds: 1), (_) {
-        if (ref.watch(secondsProvider) > 1) {
-          ref.read(secondsProvider.notifier).state--;
-        } else {
-          ref.read(secondsProvider.notifier).state = 0;
-          stopTimer();
-        }
-      });
-    }
-  }
-
-  void stopTimer() {
-    // First, set the 'Timer is running' boolean to false
-    ref.read(isRunningProvider.notifier).state = false;
-    // Second, cancel the active timers.
-    secondsTimer?.cancel();
-    minutesTimer?.cancel();
-  }
-
   void onDragUpdate(DragUpdateDetails details, Size circleSize) {
     // Only if the timer is NOT running, the timer can be adjusted
     if (!ref.watch(isRunningProvider)) {
@@ -150,7 +114,17 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
       floatingActionButton: FloatingActionButton.extended(
         // Check the 'Timer is running' boolean to see if the timer is running.
         // If it is, show the stop button, otherwise show the start button.
-        onPressed: ref.watch(isRunningProvider) ? stopTimer : startTimer,
+        onPressed: ref.watch(isRunningProvider)
+            ? TimerFunction(
+                ref,
+                minutesTimer,
+                secondsTimer,
+              ).stopTimer
+            : TimerFunction(
+                ref,
+                minutesTimer,
+                secondsTimer,
+              ).startTimer,
         label: Text(
           ref.watch(isRunningProvider) ? 'STOP' : 'START',
           style: const TextStyle(

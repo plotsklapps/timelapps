@@ -99,7 +99,7 @@ NavigationRail buildNavigationRail(
       NavigationRailDestination(
         icon: ref.watch(isColorRedProvider)
             ? const Icon(FontAwesomeIcons.solidHeart)
-            : const Icon(FontAwesomeIcons.water),
+            : const Icon(FontAwesomeIcons.leaf),
         label: const Text('Color'),
       ),
       NavigationRailDestination(
