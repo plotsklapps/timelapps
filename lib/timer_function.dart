@@ -23,7 +23,7 @@ class TimerFunction {
         if (ref.watch(minutesProvider) > 1) {
           ref.read(minutesProvider.notifier).state--;
         } else {
-          ref.read(secondsProvider.notifier).state = 0;
+          ref.read(minutesProvider.notifier).state = 0;
           stopTimer();
         }
       });
