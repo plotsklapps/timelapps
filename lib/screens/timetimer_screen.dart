@@ -152,34 +152,6 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
           ),
         ],
       ),
-      // Only show the navigation bar when the timer is NOT running
-      bottomNavigationBar: ref.watch(isRunningProvider)
-          ? const SizedBox()
-          : NavigationBar(
-              onDestinationSelected: (int index) {
-                ref.read(currentPageIndexProvider.notifier).state = index;
-              },
-              selectedIndex: ref.watch(currentPageIndexProvider),
-              destinations: const <Widget>[
-                NavigationDestination(
-                  icon: Icon(FontAwesomeIcons.clock),
-                  selectedIcon: Icon(FontAwesomeIcons.check),
-                  label: 'TimeTimer',
-                ),
-                NavigationDestination(
-                  icon: Icon(FontAwesomeIcons.trafficLight),
-                  selectedIcon: Icon(FontAwesomeIcons.check),
-                  label: 'Noise',
-                ),
-                NavigationDestination(
-                  icon: Icon(FontAwesomeIcons.clone),
-                  selectedIcon: Icon(FontAwesomeIcons.check),
-                  label: 'Both',
-                ),
-              ],
-            ).animate().slideX(
-              duration: const Duration(milliseconds: 1000),
-              curve: Curves.easeInOut),
       floatingActionButton: FloatingActionButton.extended(
         // Check the 'Timer is running' boolean to see if the timer is running.
         // If it is, show the stop button, otherwise show the start button.
