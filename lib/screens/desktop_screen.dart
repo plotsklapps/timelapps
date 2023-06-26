@@ -5,25 +5,10 @@ class DesktopScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Row(
-          children: <Expanded>[
-            Expanded(
-              flex: 1,
-              child: Center(
-                  child: Image.asset('assets/plotsklapps_logo_stacked.png')),
-            ),
-            const Expanded(
-              flex: 2,
-              child: Center(
-                child: PhoneContainer(
-                  child: MobileScreen(),
-                ),
-              ),
-            ),
-          ],
+    return const Scaffold(
+      body: Center(
+        child: PhoneContainer(
+          child: MobileScreen(),
         ),
       ),
     );

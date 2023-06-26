@@ -14,6 +14,7 @@ class MobileScreen extends ConsumerWidget {
           const TimeTimerScreen(),
           const NoiseScreen(),
           const DualScreen(),
+          AboutScreen(),
         ][ref.watch(currentPageIndexProvider)],
         // Only show the navigation bar when the timer is NOT running
         bottomNavigationBar: ref.watch(isRunningProvider)

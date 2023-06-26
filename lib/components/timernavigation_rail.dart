@@ -35,57 +35,6 @@ NavigationRail buildTimerNavigationRail(
       } else if (index == 5) {
         ref.read(isTimeShownProvider.notifier).state =
             !ref.watch(isTimeShownProvider);
-      } else if (index == 6) {
-        await showModalBottomSheet<AlertDialog>(
-            context: context,
-            builder: (BuildContext context) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8),
-                    child: Text(
-                      'Other options',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Divider(),
-                  ListTile(
-                    leading: const Icon(FontAwesomeIcons.globe),
-                    title: const Text('Language'),
-                    onTap: () {
-                      Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: const Text('Other languages coming soon!'),
-                        behavior: SnackBarBehavior.floating,
-                        action: SnackBarAction(
-                          label: 'OK',
-                          onPressed: () {},
-                        ),
-                      ));
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(FontAwesomeIcons.circleInfo),
-                    title: const Text('About'),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<Widget>(
-                          builder: (BuildContext context) {
-                            return const AboutScreen();
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              );
-            });
       }
     },
     labelType: NavigationRailLabelType.all,
@@ -125,10 +74,6 @@ NavigationRail buildTimerNavigationRail(
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.xmark),
         label: const Text('Timer'),
-      ),
-      const NavigationRailDestination(
-        icon: Icon(FontAwesomeIcons.gear),
-        label: Text('Other'),
       ),
     ],
   );
