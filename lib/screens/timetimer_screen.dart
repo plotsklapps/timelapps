@@ -96,10 +96,12 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(ref.watch(secMinProvider)),
-        centerTitle: true,
-      ),
+      appBar: ref.watch(isRunningProvider)
+          ? null
+          : AppBar(
+              title: Text(ref.watch(secMinProvider)),
+              centerTitle: true,
+            ),
       body: Row(
         children: <Widget>[
           // Only show the navigation rail when the timer is NOT running
