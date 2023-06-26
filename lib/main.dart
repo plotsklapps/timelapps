@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:timelapps/all_imports.dart';
+import 'package:timelapps/responsive_layout.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ class MainEntry extends ConsumerWidget {
       theme: ref.watch(themeLightProvider),
       darkTheme: ref.watch(themeDarkProvider),
       themeMode: ref.watch(themeModeProvider),
-      home: const HomeScreen(),
+      home: const ResponsiveLayout(),
     );
   }
 }
