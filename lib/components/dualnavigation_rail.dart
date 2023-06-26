@@ -19,6 +19,7 @@ NavigationRail buildDualNavigationRail(
       ref.read(selectedDualRailIndexProvider.notifier).state = index;
       if (index == 0) {
         ref.read(isOneOnProvider.notifier).state = !ref.watch(isOneOnProvider);
+        ref.read(noiseNameProvider.notifier).state = noiseNamesList[0];
         ref.read(isTwoOnProvider.notifier).state = false;
         ref.read(isThreeOnProvider.notifier).state = false;
         ref.read(isFourOnProvider.notifier).state = false;
@@ -29,6 +30,7 @@ NavigationRail buildDualNavigationRail(
         ref.read(isGreenOnProvider.notifier).state = true;
       } else if (index == 1) {
         ref.read(isTwoOnProvider.notifier).state = !ref.watch(isTwoOnProvider);
+        ref.read(noiseNameProvider.notifier).state = noiseNamesList[1];
         ref.read(isOneOnProvider.notifier).state = false;
         ref.read(isThreeOnProvider.notifier).state = false;
         ref.read(isFourOnProvider.notifier).state = false;
@@ -40,6 +42,7 @@ NavigationRail buildDualNavigationRail(
       } else if (index == 2) {
         ref.read(isThreeOnProvider.notifier).state =
             !ref.watch(isThreeOnProvider);
+        ref.read(noiseNameProvider.notifier).state = noiseNamesList[2];
         ref.read(isOneOnProvider.notifier).state = false;
         ref.read(isTwoOnProvider.notifier).state = false;
         ref.read(isOneOnProvider.notifier).state = false;
@@ -52,6 +55,7 @@ NavigationRail buildDualNavigationRail(
       } else if (index == 3) {
         ref.read(isFourOnProvider.notifier).state =
             !ref.watch(isFourOnProvider);
+        ref.read(noiseNameProvider.notifier).state = noiseNamesList[3];
         ref.read(isOneOnProvider.notifier).state = false;
         ref.read(isTwoOnProvider.notifier).state = false;
         ref.read(isThreeOnProvider.notifier).state = false;
@@ -63,6 +67,7 @@ NavigationRail buildDualNavigationRail(
       } else if (index == 4) {
         ref.read(isFiveOnProvider.notifier).state =
             !ref.watch(isFiveOnProvider);
+        ref.read(noiseNameProvider.notifier).state = noiseNamesList[4];
         ref.read(isOneOnProvider.notifier).state = false;
         ref.read(isTwoOnProvider.notifier).state = false;
         ref.read(isThreeOnProvider.notifier).state = false;
@@ -73,6 +78,7 @@ NavigationRail buildDualNavigationRail(
         ref.read(isGreenOnProvider.notifier).state = false;
       } else if (index == 5) {
         ref.read(isSixOnProvider.notifier).state = !ref.watch(isSixOnProvider);
+        ref.read(noiseNameProvider.notifier).state = noiseNamesList[5];
         ref.read(isOneOnProvider.notifier).state = false;
         ref.read(isTwoOnProvider.notifier).state = false;
         ref.read(isThreeOnProvider.notifier).state = false;
@@ -107,37 +113,37 @@ NavigationRail buildDualNavigationRail(
         icon: ref.watch(isOneOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.bullhorn),
-        label: const Text('ONE'),
+        label: const Text('Outside'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isTwoOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.personChalkboard),
-        label: const Text('TWO'),
+        label: const Text('Presentation'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isThreeOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.volumeHigh),
-        label: const Text('THREE'),
+        label: const Text('Talking'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isFourOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.volumeLow),
-        label: const Text('FOUR'),
+        label: const Text('Working'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isFiveOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.volumeOff),
-        label: const Text('FIVE'),
+        label: const Text('Whisper'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isSixOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.volumeXmark),
-        label: const Text('SIX'),
+        label: const Text('Silence'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isThemeLightProvider)

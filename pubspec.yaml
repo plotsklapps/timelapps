@@ -15,6 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_animate: ^4.2.0
+  flutter_launcher_icons: ^0.13.1
   flutter_riverpod: ^2.3.6
   font_awesome_flutter: ^10.4.0
   google_fonts: ^5.1.0
@@ -29,3 +30,24 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/timelapps_icon.png"
+  adaptive_icon_background: "#DEDEDE"
+  adaptive_icon_foreground: "assets/timelapps_icon.png"
+  min_sdk_android: 24 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/timelapps_icon.png"
+    background_color: "#DEDEDE"
+    theme_color: "#DEDEDE"
+  windows:
+    generate: true
+    image_path: "assets/timelapps_icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/timelapps_icon.png"

@@ -18,3 +18,12 @@ final StateProvider<bool> isRunningProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
+
+final StateProvider<String> secMinProvider =
+    StateProvider<String>((StateProviderRef<String> ref) {
+  if (!ref.watch(isMinutesShownProvider)) {
+    return 'Seconds';
+  } else {
+    return 'Minutes';
+  }
+});

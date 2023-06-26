@@ -6,7 +6,7 @@ import 'package:timelapps/all_imports.dart';
 
 final StateProvider<bool> isRedOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
-  return true;
+  return false;
 });
 
 final StateProvider<bool> isYellowOnProvider =
@@ -16,7 +16,7 @@ final StateProvider<bool> isYellowOnProvider =
 
 final StateProvider<bool> isGreenOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
-  return false;
+  return true;
 });
 
 final StateProvider<bool> isOneOnProvider =
@@ -48,3 +48,18 @@ final StateProvider<bool> isSixOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
+
+final List<String> noiseNamesList = <String>[
+  'Outside voice',
+  'Presentation voice',
+  'Talking voice',
+  'Working voice',
+  'Whispering',
+  'Silence',
+];
+
+final StateProvider<String> noiseNameProvider = StateProvider<String>(
+  (StateProviderRef<String> ref) {
+    return noiseNamesList[0];
+  },
+);
