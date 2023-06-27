@@ -23,9 +23,12 @@ class CustomDrawer extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const Divider(),
-          const Text(
-            UtilsString.kEnjoyedMakingIt,
-            textAlign: TextAlign.center,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              UtilsString.kEnjoyedMakingIt,
+              textAlign: TextAlign.center,
+            ),
           ),
           const Divider(),
           ListTile(
