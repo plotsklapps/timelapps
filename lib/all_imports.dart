@@ -23,3 +23,4 @@ export 'package:timelapps/screens/noise_screen.dart';
 export 'package:timelapps/screens/tablet_screen.dart';
 export 'package:timelapps/screens/timetimer_screen.dart';
 export 'package:url_launcher/url_launcher.dart';
+export 'package:timelapps/components/phone_container.dart';
