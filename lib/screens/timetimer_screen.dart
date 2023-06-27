@@ -102,6 +102,7 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
               title: Text(ref.watch(secMinProvider)),
               centerTitle: true,
             ),
+      drawer: const CustomDrawer(),
       body: Row(
         children: <Widget>[
           // Only show the navigation rail when the timer is NOT running

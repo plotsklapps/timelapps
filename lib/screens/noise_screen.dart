@@ -21,6 +21,7 @@ class NoiseScreenState extends ConsumerState<NoiseScreen> {
               ),
               centerTitle: true,
             ),
+      drawer: const CustomDrawer(),
       body: Row(
         children: <Widget>[
           if (ref.watch(isRunningProvider))

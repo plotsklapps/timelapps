@@ -99,6 +99,7 @@ class DualScreenState extends ConsumerState<DualScreen> {
               ),
               centerTitle: true,
             ),
+      drawer: const CustomDrawer(),
       body: Row(
         children: <Widget>[
           if (ref.watch(isRunningProvider))
