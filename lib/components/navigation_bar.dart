@@ -22,11 +22,6 @@ NavigationBar buildNavigationBar(WidgetRef ref) {
         selectedIcon: Icon(FontAwesomeIcons.check),
         label: 'Both',
       ),
-      NavigationDestination(
-        icon: Icon(FontAwesomeIcons.gear),
-        selectedIcon: Icon(FontAwesomeIcons.check),
-        label: 'More',
-      ),
     ],
   );
 }
