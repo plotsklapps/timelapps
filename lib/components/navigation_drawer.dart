@@ -49,7 +49,7 @@ class CustomDrawer extends StatelessWidget {
             title: const Text(UtilsString.kDonate),
             onTap: () async {
               Navigator.pop(context);
-              showDialog<void>(
+              await showDialog<void>(
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
