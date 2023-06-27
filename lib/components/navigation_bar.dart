@@ -15,7 +15,7 @@ NavigationBar buildNavigationBar(WidgetRef ref) {
       NavigationDestination(
         icon: Icon(FontAwesomeIcons.trafficLight),
         selectedIcon: Icon(FontAwesomeIcons.check),
-        label: 'Noise',
+        label: 'NoiseLight',
       ),
       NavigationDestination(
         icon: Icon(FontAwesomeIcons.clone),

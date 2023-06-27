@@ -1,5 +1,5 @@
 name: timelapps
-description: TimeTimer and Pomodoro
+description: TimeTimer and NoiseLight
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
