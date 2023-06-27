@@ -45,7 +45,38 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(FontAwesomeIcons.heartCircleCheck),
             title: const Text(UtilsString.kDonate),
             onTap: () async {
-              await UtilsHttp().launchBuyMeACoffee();
+              Navigator.pop(context);
+              showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text(UtilsString.kDonations),
+                    content: const Text(
+                      UtilsString.kDonationsPlease,
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          textStyle: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        child: const Text(UtilsString.kNotNow),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          textStyle: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        child: const Text(UtilsString.kGreatIdea),
+                        onPressed: () async {
+                          await UtilsHttp().launchBuyMeACoffee();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
             },
           ),
           ListTile(
