@@ -25,3 +25,4 @@ export 'package:url_launcher/url_launcher.dart';
 export 'package:timelapps/components/phone_container.dart';
 export 'package:timelapps/utils/http_utils.dart';
 export 'package:timelapps/components/navigation_drawer.dart';
+export 'package:timelapps/utils/string_utils.dart';
