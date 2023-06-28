@@ -13,14 +13,6 @@ class NoiseScreenState extends ConsumerState<NoiseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ref.watch(isRunningProvider)
-          ? null
-          : AppBar(
-              title: Text(
-                ref.watch(noiseNameProvider),
-              ),
-              centerTitle: true,
-            ),
       drawer: const CustomDrawer(),
       body: Row(
         children: <Widget>[

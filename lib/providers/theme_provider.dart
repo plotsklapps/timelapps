@@ -159,7 +159,7 @@ final StateProvider<ThemeData> themeLightProvider =
 final StateProvider<ThemeData> themeDarkProvider =
     StateProvider<ThemeData>((StateProviderRef<ThemeData> ref) {
   return FlexThemeData.dark(
-    scheme: FlexScheme.money,
+    scheme: ref.watch(flexSchemeProvider),
     usedColors: 1,
     surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
     blendLevel: 24,

@@ -112,12 +112,6 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ref.watch(isRunningProvider)
-          ? null
-          : AppBar(
-              title: Text(ref.watch(secMinProvider)),
-              centerTitle: true,
-            ),
       drawer: const CustomDrawer(),
       body: Row(
         children: <Widget>[
