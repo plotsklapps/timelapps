@@ -20,6 +20,8 @@ class NoiseScreenState extends ConsumerState<NoiseScreen> {
             const SizedBox()
           else
             buildNoiseNavigationRail(context, ref).animate().slideX(
+                begin: -1.0,
+                end: 0.0,
                 duration: const Duration(milliseconds: 1000),
                 curve: Curves.easeInOut),
           Expanded(

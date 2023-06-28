@@ -120,6 +120,8 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
             const SizedBox()
           else
             buildTimerNavigationRail(context, ref).animate().slideX(
+                begin: -1.0,
+                end: 0.0,
                 duration: const Duration(milliseconds: 1000),
                 curve: Curves.easeInOut),
           // Use an expanded widget to fill the remaining space

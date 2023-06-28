@@ -122,6 +122,8 @@ class DualScreenState extends ConsumerState<DualScreen> {
                       child: buildDualNavigationRail(context, ref)
                           .animate()
                           .slideX(
+                              begin: -1.0,
+                              end: 0.0,
                               duration: const Duration(milliseconds: 1000),
                               curve: Curves.easeInOut),
                     ),
