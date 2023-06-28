@@ -103,6 +103,9 @@ NavigationRail buildDualNavigationRail(
         ref.read(isMinutesShownProvider.notifier).state =
             !ref.watch(isMinutesShownProvider);
       } else if (index == 11) {
+        ref.read(isBikeBellProvider.notifier).state =
+            !ref.watch(isBikeBellProvider);
+      } else if (index == 12) {
         ref.read(isTimeShownProvider.notifier).state =
             !ref.watch(isTimeShownProvider);
       }
@@ -174,6 +177,12 @@ NavigationRail buildDualNavigationRail(
             ? const Icon(FontAwesomeIcons.m)
             : const Icon(FontAwesomeIcons.s),
         label: const Text('Duration'),
+      ),
+      NavigationRailDestination(
+        icon: ref.watch(isBikeBellProvider)
+            ? const Icon(FontAwesomeIcons.bicycle)
+            : const Icon(FontAwesomeIcons.bellConcierge),
+        label: const Text('Bell'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isTimeShownProvider)

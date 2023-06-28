@@ -33,6 +33,9 @@ NavigationRail buildTimerNavigationRail(
         ref.read(isMinutesShownProvider.notifier).state =
             !ref.watch(isMinutesShownProvider);
       } else if (index == 5) {
+        ref.read(isBikeBellProvider.notifier).state =
+            !ref.watch(isBikeBellProvider);
+      } else if (index == 6) {
         ref.read(isTimeShownProvider.notifier).state =
             !ref.watch(isTimeShownProvider);
       }
@@ -68,6 +71,12 @@ NavigationRail buildTimerNavigationRail(
             ? const Icon(FontAwesomeIcons.m)
             : const Icon(FontAwesomeIcons.s),
         label: const Text('Duration'),
+      ),
+      NavigationRailDestination(
+        icon: ref.watch(isBikeBellProvider)
+            ? const Icon(FontAwesomeIcons.bicycle)
+            : const Icon(FontAwesomeIcons.bellConcierge),
+        label: const Text('Bell'),
       ),
       NavigationRailDestination(
         icon: ref.watch(isTimeShownProvider)

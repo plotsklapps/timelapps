@@ -64,15 +64,19 @@ class DualScreenState extends ConsumerState<DualScreen> {
   }
 
   Future<void> stopTimer() async {
-    // First, play the bicycle bell sound
-    await audioPlayer.setAsset('assets/ding_sound.mp3').then((_) {
-      return audioPlayer.play();
-    });
     // Second, set the 'Timer is running' boolean to false
     ref.read(isRunningProvider.notifier).state = false;
     // Third, cancel the active timers.
     secondsTimer?.cancel();
     minutesTimer?.cancel();
+    // Third, play the chosen bell sound
+    await audioPlayer.setAsset(ref.watch(bellSoundProvider)).then((_) {
+      return audioPlayer.play().then((_) {
+        return audioPlayer.playerStateStream.firstWhere((PlayerState state) {
+          return state.processingState == ProcessingState.completed;
+        });
+      });
+    });
   }
 
   void onDragUpdate(DragUpdateDetails details, Size circleSize) {

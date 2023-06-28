@@ -1,7 +1,7 @@
 class UtilsString {
   // CustomDrawer Strings
   static const String kPlotsklappsLogoStraight =
-      'assets/plotsklapps_logo_straight.png';
+      'assets/logo_plotsklapps_straight.png';
   static const String kTimelappsByPlotsklapps = 'TIMELAPPS by PLOTSKLAPPS';
   static const String kEnjoyedMakingIt = '''
 This app is made with Flutter & Dart and is 100% open source and free forever. I hope you enjoy using this app as much as I enjoyed making it!''';

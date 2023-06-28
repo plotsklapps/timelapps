@@ -19,11 +19,25 @@ final StateProvider<bool> isRunningProvider =
   return false;
 });
 
+final StateProvider<bool> isBikeBellProvider =
+    StateProvider<bool>((StateProviderRef<bool> ref) {
+  return true;
+});
+
+final StateProvider<String> bellSoundProvider =
+    StateProvider<String>((StateProviderRef<String> ref) {
+  if (ref.watch(isBikeBellProvider)) {
+    return 'assets/bell_bike.mp3';
+  } else {
+    return 'assets/bell_reception.mp3';
+  }
+});
+
 final StateProvider<String> secMinProvider =
     StateProvider<String>((StateProviderRef<String> ref) {
-  if (!ref.watch(isMinutesShownProvider)) {
-    return 'Seconds';
-  } else {
+  if (ref.watch(isMinutesShownProvider)) {
     return 'Minutes';
+  } else {
+    return 'Seconds';
   }
 });
