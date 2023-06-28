@@ -5,34 +5,35 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        DrawerHeader(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Image.asset(UtilsString.kPlotsklappsLogoStraight),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          DrawerHeader(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Image.asset(UtilsString.kPlotsklappsLogoStraight),
+            ),
           ),
-        ),
-        const Text(
-          UtilsString.kTimelappsByPlotsklapps,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const Divider(),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            UtilsString.kEnjoyedMakingIt,
+          const Text(
+            UtilsString.kTimelappsByPlotsklapps,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
-        ),
-        const Divider(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ElevatedButton(
+          const Divider(),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              UtilsString.kEnjoyedMakingIt,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const Divider(),
+          ElevatedButton(
             onPressed: () async {
               await UtilsHttp().launchWebsite();
             },
@@ -44,11 +45,12 @@ class AboutScreen extends StatelessWidget {
                 Text(UtilsString.kWebsite),
               ],
             ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ElevatedButton(
+          )
+              .animate()
+              .fade(delay: 0.ms, duration: 1000.ms)
+              .move(delay: 0.ms, duration: 1000.ms),
+          const SizedBox(height: 8),
+          ElevatedButton(
             onPressed: () async {
               await UtilsHttp().launchSourceCode();
             },
@@ -60,13 +62,13 @@ class AboutScreen extends StatelessWidget {
                 Text(UtilsString.kSourceCode),
               ],
             ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ElevatedButton(
+          )
+              .animate()
+              .fade(delay: 500.ms, duration: 1000.ms)
+              .move(delay: 500.ms, duration: 1000.ms),
+          const SizedBox(height: 8),
+          ElevatedButton(
             onPressed: () async {
-              Navigator.pop(context);
               await showDialog<void>(
                 context: context,
                 builder: (BuildContext context) {
@@ -91,7 +93,7 @@ class AboutScreen extends StatelessWidget {
                         ),
                         child: const Text(UtilsString.kGreatIdea),
                         onPressed: () async {
-                          await UtilsHttp().launchBuyMeACoffee();
+                          await UtilsHttp().launchStripe();
                         },
                       ),
                     ],
@@ -107,11 +109,12 @@ class AboutScreen extends StatelessWidget {
                 Text(UtilsString.kDonate),
               ],
             ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ElevatedButton(
+          )
+              .animate()
+              .fade(delay: 1000.ms, duration: 1000.ms)
+              .move(delay: 1000.ms, duration: 1000.ms),
+          const SizedBox(height: 8),
+          ElevatedButton(
             onPressed: () async {
               Navigator.pop(context);
             },
@@ -123,10 +126,13 @@ class AboutScreen extends StatelessWidget {
                 Text(UtilsString.kAbout),
               ],
             ),
-          ),
-        ),
-        const Divider(),
-      ],
+          )
+              .animate()
+              .fade(delay: 1500.ms, duration: 1000.ms)
+              .move(delay: 1500.ms, duration: 1000.ms),
+          const Divider(),
+        ],
+      ),
     );
   }
 }
