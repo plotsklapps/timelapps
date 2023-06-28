@@ -65,7 +65,7 @@ class DualScreenState extends ConsumerState<DualScreen> {
 
   Future<void> stopTimer() async {
     // First, play the bicycle bell sound
-    await audioPlayer.setAsset('assets/bicycle_bell.mp3').then((_) {
+    await audioPlayer.setAsset('assets/ding_sound.mp3').then((_) {
       return audioPlayer.play();
     });
     // Second, set the 'Timer is running' boolean to false
