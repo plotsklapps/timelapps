@@ -6,6 +6,7 @@ export 'package:flutter_native_splash/flutter_native_splash.dart';
 export 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 export 'package:google_fonts/google_fonts.dart';
+export 'package:just_audio/just_audio.dart';
 export 'package:timelapps/components/dualnavigation_rail.dart';
 export 'package:timelapps/components/navigation_bar.dart';
 export 'package:timelapps/components/navigation_drawer.dart';
