@@ -106,7 +106,6 @@ class DualScreenState extends ConsumerState<DualScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CustomDrawer(),
       body: Row(
         children: <Widget>[
           if (ref.watch(isRunningProvider))

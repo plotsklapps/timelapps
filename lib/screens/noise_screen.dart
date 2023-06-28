@@ -13,7 +13,6 @@ class NoiseScreenState extends ConsumerState<NoiseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CustomDrawer(),
       body: Row(
         children: <Widget>[
           if (ref.watch(isRunningProvider))

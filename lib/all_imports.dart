@@ -9,7 +9,6 @@ export 'package:google_fonts/google_fonts.dart';
 export 'package:just_audio/just_audio.dart';
 export 'package:timelapps/components/dualnavigation_rail.dart';
 export 'package:timelapps/components/navigation_bar.dart';
-export 'package:timelapps/components/navigation_drawer.dart';
 export 'package:timelapps/components/noisenavigation_rail.dart';
 export 'package:timelapps/components/phone_container.dart';
 export 'package:timelapps/components/timernavigation_rail.dart';
