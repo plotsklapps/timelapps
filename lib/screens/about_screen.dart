@@ -69,34 +69,74 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () async {
-              await showDialog<void>(
+              await showModalBottomSheet<void>(
                 context: context,
                 builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text(UtilsString.kDonations),
-                    content: const Text(
-                      UtilsString.kDonationsPlease,
+                  return Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const Text(
+                          UtilsString.kDonations,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Divider(),
+                        const Text(
+                          UtilsString.kDonationsPlease,
+                          textAlign: TextAlign.center,
+                        ),
+                        const Divider(),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await UtilsHttp().launchOneTimeDonationStripe();
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(FontAwesomeIcons.stripe),
+                              SizedBox(width: 16),
+                              Text(UtilsString.kOneTimeDonation),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await UtilsHttp().launchMonthlySubscriptionStripe();
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(FontAwesomeIcons.stripe),
+                              SizedBox(width: 16),
+                              Text(UtilsString.kMonthlySubscription),
+                            ],
+                          ),
+                        ),
+                        const Divider(),
+                        const Text(
+                          UtilsString.kDonateViaPhone,
+                        ),
+                        const SizedBox(height: 8),
+                        Image.asset('assets/stripe_qr.png',
+                            height: MediaQuery.sizeOf(context).height * 0.1),
+                        const SizedBox(height: 8),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            textStyle: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          child: const Text(UtilsString.kNotNow),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
                     ),
-                    actions: <Widget>[
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          textStyle: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        child: const Text(UtilsString.kNotNow),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          textStyle: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        child: const Text(UtilsString.kGreatIdea),
-                        onPressed: () async {
-                          await UtilsHttp().launchStripe();
-                        },
-                      ),
-                    ],
                   );
                 },
               );

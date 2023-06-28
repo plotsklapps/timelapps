@@ -3,9 +3,10 @@ import 'package:timelapps/all_imports.dart';
 class UtilsHttp {
   static final Uri plotsklappsWebsiteURL =
       Uri.parse('https://www.plotsklapps.dev');
-  final Uri buyMeACoffeeURL =
-      Uri.parse('https://www.buymeacoffee.com/plotsklapps');
-  final Uri stripeURL = Uri.parse('https://buy.stripe.com/9AQbJy7lEdPQ9XOcMM');
+  final Uri oneTimeDonationStripe =
+      Uri.parse('https://buy.stripe.com/9AQbJy7lEdPQ9XOcMM');
+  final Uri monthlySubscriptionStripe =
+      Uri.parse('https://buy.stripe.com/aEU28Y8pIcLM3zq3cd');
   final Uri sourceCodeURL =
       Uri.parse('https://github.com/plotsklapps/timelapps');
 
@@ -15,15 +16,15 @@ class UtilsHttp {
     }
   }
 
-  Future<void> launchBuyMeACoffee() async {
-    if (!await launchUrl(buyMeACoffeeURL)) {
-      throw Exception('Could not launch $buyMeACoffeeURL');
+  Future<void> launchOneTimeDonationStripe() async {
+    if (!await launchUrl(oneTimeDonationStripe)) {
+      throw Exception('Could not launch $oneTimeDonationStripe');
     }
   }
 
-  Future<void> launchStripe() async {
-    if (!await launchUrl(stripeURL)) {
-      throw Exception('Could not launch $stripeURL');
+  Future<void> launchMonthlySubscriptionStripe() async {
+    if (!await launchUrl(monthlySubscriptionStripe)) {
+      throw Exception('Could not launch $monthlySubscriptionStripe');
     }
   }
 
