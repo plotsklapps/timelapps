@@ -18,12 +18,20 @@ class DualScreenState extends ConsumerState<DualScreen> {
   // are only initialized when the timer is running.
   Timer? secondsTimer;
   Timer? minutesTimer;
+  late AudioPlayer audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    audioPlayer = AudioPlayer();
+  }
 
   @override
   void dispose() {
-    // Kill the timers when the widget is disposed
+    // Kill the timers and audioPlayer when the widget is disposed
     secondsTimer?.cancel();
     minutesTimer?.cancel();
+    unawaited(audioPlayer.dispose());
     super.dispose();
   }
 
@@ -35,30 +43,34 @@ class DualScreenState extends ConsumerState<DualScreen> {
     // start the corresponding timer. When the timer reaches 0, call
     // stopTimer() to stop the timer and reset the 'Timer is running' boolean.
     if (ref.watch(isMinutesShownProvider)) {
-      minutesTimer = Timer.periodic(const Duration(minutes: 1), (_) {
+      minutesTimer = Timer.periodic(const Duration(minutes: 1), (_) async {
         if (ref.watch(minutesProvider) > 1) {
           ref.read(minutesProvider.notifier).state--;
         } else {
           ref.read(minutesProvider.notifier).state = 0;
-          stopTimer();
+          await stopTimer();
         }
       });
     } else {
-      secondsTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      secondsTimer = Timer.periodic(const Duration(seconds: 1), (_) async {
         if (ref.watch(secondsProvider) > 1) {
           ref.read(secondsProvider.notifier).state--;
         } else {
           ref.read(secondsProvider.notifier).state = 0;
-          stopTimer();
+          await stopTimer();
         }
       });
     }
   }
 
-  void stopTimer() {
-    // First, set the 'Timer is running' boolean to false
+  Future<void> stopTimer() async {
+    // First, play the bicycle bell sound
+    await audioPlayer.setAsset('assets/bicycle_bell.mp3').then((_) {
+      return audioPlayer.play();
+    });
+    // Second, set the 'Timer is running' boolean to false
     ref.read(isRunningProvider.notifier).state = false;
-    // Second, cancel the active timers.
+    // Third, cancel the active timers.
     secondsTimer?.cancel();
     minutesTimer?.cancel();
   }
