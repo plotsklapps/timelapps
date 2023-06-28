@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:timelapps/all_imports.dart';
 
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
 // NavigationBar index provider
 final StateProvider<int> currentPageIndexProvider =
     StateProvider<int>((StateProviderRef<int> ref) {
@@ -112,6 +114,7 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       drawer: const CustomDrawer(),
       body: Row(
         children: <Widget>[
