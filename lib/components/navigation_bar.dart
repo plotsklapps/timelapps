@@ -8,7 +8,7 @@ NavigationBar buildNavigationBar(WidgetRef ref) {
     selectedIndex: ref.watch(currentPageIndexProvider),
     destinations: const <Widget>[
       NavigationDestination(
-        icon: Icon(FontAwesomeIcons.clock),
+        icon: Icon(FontAwesomeIcons.solidClock),
         selectedIcon: Icon(FontAwesomeIcons.check),
         label: 'TimeTimer',
       ),
@@ -18,7 +18,7 @@ NavigationBar buildNavigationBar(WidgetRef ref) {
         label: 'NoiseLight',
       ),
       NavigationDestination(
-        icon: Icon(FontAwesomeIcons.clone),
+        icon: Icon(FontAwesomeIcons.solidClone),
         selectedIcon: Icon(FontAwesomeIcons.check),
         label: 'Both',
       ),
