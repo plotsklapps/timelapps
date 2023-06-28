@@ -18,7 +18,9 @@ class MobileScreen extends ConsumerWidget {
         // Only show the navigation bar when the timer is NOT running
         bottomNavigationBar: ref.watch(isRunningProvider)
             ? const SizedBox()
-            : buildNavigationBar(ref).animate().slideX(
+            : buildNavigationBar(ref).animate().slideY(
+                begin: 1.0,
+                end: 0.0,
                 duration: const Duration(milliseconds: 1000),
                 curve: Curves.easeInOut),
       ),
