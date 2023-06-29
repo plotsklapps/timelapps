@@ -19,8 +19,8 @@ Timelapps is proudly developed and maintained by a solo developer, committed to 
   static const String kMonthlySubscription = 'Monthly subscription (€ 3.00)';
   static const String kDonateViaPhone =
       'You can also scan the QR-code with your mobile phone to make a donation';
-  static const String kOneTimeQR = 'One-time';
-  static const String kMonthlyQR = 'Monthly';
+  static const String kOneTimeQR = 'assets/onetime_qr.png';
+  static const String kMonthlyQR = 'assets/monthly_qr.png';
 
   // AboutDialog Strings
   static const String kPackages = '''

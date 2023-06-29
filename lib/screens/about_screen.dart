@@ -252,7 +252,7 @@ class AboutScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Column>[
+                  children: <Widget>[
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -261,6 +261,7 @@ class AboutScreen extends StatelessWidget {
                             height: MediaQuery.sizeOf(context).height * 0.2),
                       ],
                     ),
+                    const SizedBox(width: 16),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
