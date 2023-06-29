@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:timelapps/all_imports.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -199,87 +201,98 @@ class AboutScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return Padding(
           padding: const EdgeInsets.all(16),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Text(
-                  UtilsString.kDonations,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+          child: ScrollConfiguration(
+            behavior: const ScrollBehavior().copyWith(
+              scrollbars: false,
+              dragDevices: <PointerDeviceKind>{
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.trackpad,
+                PointerDeviceKind.touch,
+                PointerDeviceKind.stylus,
+              },
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const Text(
+                    UtilsString.kDonations,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const Divider(),
-                const Text(
-                  UtilsString.kDonationsPlease,
-                  textAlign: TextAlign.center,
-                ),
-                const Divider(),
-                ElevatedButton(
-                  onPressed: () async {
-                    await UtilsHttp().launchOneTimeDonationStripe();
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(FontAwesomeIcons.stripe),
-                      SizedBox(width: 16),
-                      Text(UtilsString.kOneTimeDonation),
-                    ],
+                  const Divider(),
+                  const Text(
+                    UtilsString.kDonationsPlease,
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                const SizedBox(height: 8),
-                ElevatedButton(
-                  onPressed: () async {
-                    await UtilsHttp().launchMonthlySubscriptionStripe();
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(FontAwesomeIcons.stripe),
-                      SizedBox(width: 16),
-                      Text(UtilsString.kMonthlySubscription),
-                    ],
-                  ),
-                ),
-                const Divider(),
-                const Text(
-                  UtilsString.kDonateViaPhone,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
+                  const Divider(),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await UtilsHttp().launchOneTimeDonationStripe();
+                    },
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text('One-time'),
-                        Image.asset(UtilsString.kOneTimeQR,
-                            height: MediaQuery.sizeOf(context).height * 0.2),
+                        Icon(FontAwesomeIcons.stripe),
+                        SizedBox(width: 16),
+                        Text(UtilsString.kOneTimeDonation),
                       ],
                     ),
-                    const SizedBox(width: 16),
-                    Column(
+                  ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await UtilsHttp().launchMonthlySubscriptionStripe();
+                    },
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text('Monthly'),
-                        Image.asset(UtilsString.kMonthlyQR,
-                            height: MediaQuery.sizeOf(context).height * 0.2),
+                        Icon(FontAwesomeIcons.stripe),
+                        SizedBox(width: 16),
+                        Text(UtilsString.kMonthlySubscription),
                       ],
                     ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                TextButton(
-                  child: const Text(UtilsString.kNotNow),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
+                  ),
+                  const Divider(),
+                  const Text(
+                    UtilsString.kDonateViaPhone,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text('One-time'),
+                          Image.asset(UtilsString.kOneTimeQR,
+                              height: MediaQuery.sizeOf(context).height * 0.2),
+                        ],
+                      ),
+                      const SizedBox(width: 16),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text('Monthly'),
+                          Image.asset(UtilsString.kMonthlyQR,
+                              height: MediaQuery.sizeOf(context).height * 0.2),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  TextButton(
+                    child: const Text(UtilsString.kNotNow),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );
