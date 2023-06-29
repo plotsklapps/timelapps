@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:timelapps/all_imports.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -69,77 +71,7 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () async {
-              await showModalBottomSheet<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        const Text(
-                          UtilsString.kDonations,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Divider(),
-                        const Text(
-                          UtilsString.kDonationsPlease,
-                          textAlign: TextAlign.center,
-                        ),
-                        const Divider(),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await UtilsHttp().launchOneTimeDonationStripe();
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(FontAwesomeIcons.stripe),
-                              SizedBox(width: 16),
-                              Text(UtilsString.kOneTimeDonation),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await UtilsHttp().launchMonthlySubscriptionStripe();
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(FontAwesomeIcons.stripe),
-                              SizedBox(width: 16),
-                              Text(UtilsString.kMonthlySubscription),
-                            ],
-                          ),
-                        ),
-                        const Divider(),
-                        const Text(
-                          UtilsString.kDonateViaPhone,
-                        ),
-                        const SizedBox(height: 8),
-                        Image.asset('assets/stripe_qr.png',
-                            height: MediaQuery.sizeOf(context).height * 0.1),
-                        const SizedBox(height: 8),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            textStyle: Theme.of(context).textTheme.labelLarge,
-                          ),
-                          child: const Text(UtilsString.kNotNow),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
+              await buildShowDonationsDialog(context);
             },
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -156,88 +88,7 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () async {
-              await showModalBottomSheet<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        const Text(
-                          UtilsString.kAbout,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Divider(),
-                        const Text(
-                          UtilsString.kPackages,
-                          textAlign: TextAlign.center,
-                        ),
-                        const Divider(),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await UtilsHttp().launchFlutterRiverpod();
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(FontAwesomeIcons.database),
-                              SizedBox(width: 16),
-                              Text(UtilsString.kRiverpod),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await UtilsHttp().launchFlexColorScheme();
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(FontAwesomeIcons.paintRoller),
-                              SizedBox(width: 16),
-                              Text(UtilsString.kFlexColorScheme),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await UtilsHttp().launchFlutterAnimate();
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(FontAwesomeIcons.arrowsUpDownLeftRight),
-                              SizedBox(width: 16),
-                              Text(UtilsString.kFlutterAnimate),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await UtilsHttp().launchJustAudio();
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(FontAwesomeIcons.music),
-                              SizedBox(width: 16),
-                              Text(UtilsString.kJustAudio),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
+              await buildShowAboutDialog(context);
             },
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -254,6 +105,198 @@ class AboutScreen extends StatelessWidget {
           const Divider(),
         ],
       ),
+    );
+  }
+
+  Future<void> buildShowAboutDialog(BuildContext context) {
+    return showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Text(
+                  UtilsString.kAbout,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Divider(),
+                const Text(
+                  UtilsString.kPackages,
+                  textAlign: TextAlign.center,
+                ),
+                const Divider(),
+                ElevatedButton(
+                  onPressed: () async {
+                    await UtilsHttp().launchFlutterRiverpod();
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(FontAwesomeIcons.database),
+                      SizedBox(width: 16),
+                      Text(UtilsString.kRiverpod),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () async {
+                    await UtilsHttp().launchFlexColorScheme();
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(FontAwesomeIcons.paintRoller),
+                      SizedBox(width: 16),
+                      Text(UtilsString.kFlexColorScheme),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () async {
+                    await UtilsHttp().launchFlutterAnimate();
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(FontAwesomeIcons.arrowsUpDownLeftRight),
+                      SizedBox(width: 16),
+                      Text(UtilsString.kFlutterAnimate),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () async {
+                    await UtilsHttp().launchJustAudio();
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(FontAwesomeIcons.music),
+                      SizedBox(width: 16),
+                      Text(UtilsString.kJustAudio),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> buildShowDonationsDialog(BuildContext context) {
+    return showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16),
+          child: ScrollConfiguration(
+            behavior: const ScrollBehavior().copyWith(
+              scrollbars: false,
+              dragDevices: <PointerDeviceKind>{
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.trackpad,
+                PointerDeviceKind.touch,
+                PointerDeviceKind.stylus,
+              },
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const Text(
+                    UtilsString.kDonations,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Divider(),
+                  const Text(
+                    UtilsString.kDonationsPlease,
+                    textAlign: TextAlign.center,
+                  ),
+                  const Divider(),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await UtilsHttp().launchOneTimeDonationStripe();
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(FontAwesomeIcons.stripe),
+                        SizedBox(width: 16),
+                        Text(UtilsString.kOneTimeDonation),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await UtilsHttp().launchMonthlySubscriptionStripe();
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(FontAwesomeIcons.stripe),
+                        SizedBox(width: 16),
+                        Text(UtilsString.kMonthlySubscription),
+                      ],
+                    ),
+                  ),
+                  const Divider(),
+                  const Text(
+                    UtilsString.kDonateViaPhone,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text('One-time'),
+                          Image.asset(UtilsString.kOneTimeQR,
+                              height: MediaQuery.sizeOf(context).height * 0.2),
+                        ],
+                      ),
+                      const SizedBox(width: 16),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text('Monthly'),
+                          Image.asset(UtilsString.kMonthlyQR,
+                              height: MediaQuery.sizeOf(context).height * 0.2),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  TextButton(
+                    child: const Text(UtilsString.kNotNow),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

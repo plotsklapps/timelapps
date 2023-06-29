@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:timelapps/all_imports.dart';
 
@@ -16,6 +17,8 @@ class DualScreenState extends ConsumerState<DualScreen> {
   // We need two timers, one for seconds, one for minutes, chosen by
   // the user in the navigationrail. They are nullable because they
   // are only initialized when the timer is running.
+  // Also, we create a late instance of AudioPlayer (instantiated
+  // in initState method).
   Timer? secondsTimer;
   Timer? minutesTimer;
   late AudioPlayer audioPlayer;
@@ -64,14 +67,15 @@ class DualScreenState extends ConsumerState<DualScreen> {
   }
 
   Future<void> stopTimer() async {
-    // Second, set the 'Timer is running' boolean to false
+    // First, set the 'Timer is running' boolean to false
     ref.read(isRunningProvider.notifier).state = false;
-    // Third, cancel the active timers.
+    // Second, cancel the active timers.
     secondsTimer?.cancel();
     minutesTimer?.cancel();
     // Third, play the chosen bell sound
     await audioPlayer.setAsset(ref.watch(bellSoundProvider)).then((_) {
       return audioPlayer.play().then((_) {
+        // The following code makes sure the sound is played to the end
         return audioPlayer.playerStateStream.firstWhere((PlayerState state) {
           return state.processingState == ProcessingState.completed;
         });
@@ -108,23 +112,35 @@ class DualScreenState extends ConsumerState<DualScreen> {
     return Scaffold(
       body: Row(
         children: <Widget>[
+          // Only show the navigation rail when the timer is NOT running
           if (ref.watch(isRunningProvider))
             const SizedBox()
           else
             LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraint) {
-                return SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints:
-                        BoxConstraints(minHeight: constraint.maxHeight),
-                    child: IntrinsicHeight(
-                      child: buildDualNavigationRail(context, ref)
-                          .animate()
-                          .slideX(
-                              begin: -1.0,
-                              end: 0.0,
-                              duration: const Duration(milliseconds: 1000),
-                              curve: Curves.easeInOut),
+                return ScrollConfiguration(
+                  behavior: const ScrollBehavior().copyWith(
+                    scrollbars: false,
+                    dragDevices: <PointerDeviceKind>{
+                      PointerDeviceKind.mouse,
+                      PointerDeviceKind.trackpad,
+                      PointerDeviceKind.touch,
+                      PointerDeviceKind.stylus,
+                    },
+                  ),
+                  child: SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints:
+                          BoxConstraints(minHeight: constraint.maxHeight),
+                      child: IntrinsicHeight(
+                        child: buildDualNavigationRail(context, ref)
+                            .animate()
+                            .slideX(
+                                begin: -1.0,
+                                end: 0.0,
+                                duration: const Duration(milliseconds: 1000),
+                                curve: Curves.easeInOut),
+                      ),
                     ),
                   ),
                 );
@@ -133,32 +149,33 @@ class DualScreenState extends ConsumerState<DualScreen> {
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Expanded>[
+              children: <Widget>[
+                Text(
+                  ref.watch(noiseNameProvider),
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Expanded(
-                  child: Row(
-                    children: <Expanded>[
-                      Expanded(
-                        child: LayoutBuilder(
-                          builder: (BuildContext context,
-                              BoxConstraints constraints) {
-                            // Get the max width and height of the available
-                            // space
-                            final double maxWidth = constraints.maxWidth;
-                            final double maxHeight = constraints.maxHeight;
-                            return Center(
-                              child: CustomPaint(
-                                size: Size(maxHeight, maxWidth),
-                                painter: TrafficLightPainter(
-                                  redOn: ref.watch(isRedOnProvider),
-                                  yellowOn: ref.watch(isYellowOnProvider),
-                                  greenOn: ref.watch(isGreenOnProvider),
-                                ),
-                              ),
-                            );
-                          },
+                  child: LayoutBuilder(
+                    builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                      // Get the max width and height of the available
+                      // space
+                      final double maxWidth = constraints.maxWidth;
+                      final double maxHeight = constraints.maxHeight;
+                      return Center(
+                        child: CustomPaint(
+                          size: Size(maxHeight, maxWidth),
+                          painter: TrafficLightPainter(
+                            redOn: ref.watch(isRedOnProvider),
+                            yellowOn: ref.watch(isYellowOnProvider),
+                            greenOn: ref.watch(isGreenOnProvider),
+                          ),
                         ),
-                      )
-                    ],
+                      );
+                    },
                   ),
                 ),
                 Expanded(

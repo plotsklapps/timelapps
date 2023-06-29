@@ -22,7 +22,7 @@ export 'package:timelapps/screens/about_screen.dart';
 export 'package:timelapps/screens/desktop_screen.dart';
 export 'package:timelapps/screens/dual_screen.dart';
 export 'package:timelapps/screens/mobile_screen.dart';
-export 'package:timelapps/screens/noise_screen.dart';
+export 'package:timelapps/screens/noiselight_screen.dart';
 export 'package:timelapps/screens/tablet_screen.dart';
 export 'package:timelapps/screens/timetimer_screen.dart';
 export 'package:timelapps/utils/http_utils.dart';
