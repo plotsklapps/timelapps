@@ -19,4 +19,12 @@ Timelapps is proudly developed and maintained by a solo developer, committed to 
   static const String kMonthlySubscription = 'Monthly subscription (€ 3.00)';
   static const String kDonateViaPhone =
       'Make a donation with your mobile phone';
+
+  // AboutDialog Strings
+  static const String kPackages =
+      'Timelapps was built with Flutter & Dart with help from the following packages:';
+  static const String kRiverpod = 'flutter_riverpod';
+  static const String kFlexColorScheme = 'flex_color_scheme';
+  static const String kFlutterAnimate = 'flutter_animate';
+  static const String kJustAudio = 'just_audio';
 }

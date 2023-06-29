@@ -156,7 +156,88 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () async {
-              Navigator.pop(context);
+              await showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const Text(
+                          UtilsString.kAbout,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Divider(),
+                        const Text(
+                          UtilsString.kPackages,
+                          textAlign: TextAlign.center,
+                        ),
+                        const Divider(),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await UtilsHttp().launchFlutterRiverpod();
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(FontAwesomeIcons.database),
+                              SizedBox(width: 16),
+                              Text(UtilsString.kRiverpod),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await UtilsHttp().launchFlexColorScheme();
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(FontAwesomeIcons.paintRoller),
+                              SizedBox(width: 16),
+                              Text(UtilsString.kFlexColorScheme),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await UtilsHttp().launchFlutterAnimate();
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(FontAwesomeIcons.arrowsUpDownLeftRight),
+                              SizedBox(width: 16),
+                              Text(UtilsString.kFlutterAnimate),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await UtilsHttp().launchJustAudio();
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(FontAwesomeIcons.music),
+                              SizedBox(width: 16),
+                              Text(UtilsString.kJustAudio),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
             },
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
