@@ -274,9 +274,6 @@ class AboutScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: Theme.of(context).textTheme.labelLarge,
-                  ),
                   child: const Text(UtilsString.kNotNow),
                   onPressed: () {
                     Navigator.of(context).pop();
