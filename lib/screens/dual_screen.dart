@@ -133,32 +133,33 @@ class DualScreenState extends ConsumerState<DualScreen> {
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Expanded>[
+              children: <Widget>[
+                Text(
+                  ref.watch(noiseNameProvider),
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Expanded(
-                  child: Row(
-                    children: <Expanded>[
-                      Expanded(
-                        child: LayoutBuilder(
-                          builder: (BuildContext context,
-                              BoxConstraints constraints) {
-                            // Get the max width and height of the available
-                            // space
-                            final double maxWidth = constraints.maxWidth;
-                            final double maxHeight = constraints.maxHeight;
-                            return Center(
-                              child: CustomPaint(
-                                size: Size(maxHeight, maxWidth),
-                                painter: TrafficLightPainter(
-                                  redOn: ref.watch(isRedOnProvider),
-                                  yellowOn: ref.watch(isYellowOnProvider),
-                                  greenOn: ref.watch(isGreenOnProvider),
-                                ),
-                              ),
-                            );
-                          },
+                  child: LayoutBuilder(
+                    builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                      // Get the max width and height of the available
+                      // space
+                      final double maxWidth = constraints.maxWidth;
+                      final double maxHeight = constraints.maxHeight;
+                      return Center(
+                        child: CustomPaint(
+                          size: Size(maxHeight, maxWidth),
+                          painter: TrafficLightPainter(
+                            redOn: ref.watch(isRedOnProvider),
+                            yellowOn: ref.watch(isYellowOnProvider),
+                            greenOn: ref.watch(isGreenOnProvider),
+                          ),
                         ),
-                      )
-                    ],
+                      );
+                    },
                   ),
                 ),
                 Expanded(
