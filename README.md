@@ -1,4 +1,4 @@
-# timelapps by plotsklapps
+# TIMELAPPS by PLOTSKLAPPS
 
 Timelapps is a Flutter application that offers two useful features:
 TimeTimer and NoiseLight.
