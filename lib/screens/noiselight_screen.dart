@@ -34,22 +34,25 @@ class NoiseLightScreenState extends ConsumerState<NoiseLightScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                    // Get the max width and height of the available space
-                    final double maxWidth = constraints.maxWidth;
-                    final double maxHeight = constraints.maxHeight;
-                    return Center(
-                      child: CustomPaint(
-                        size: Size(maxHeight, maxWidth),
-                        painter: TrafficLightPainter(
-                          redOn: ref.watch(isRedOnProvider),
-                          yellowOn: ref.watch(isYellowOnProvider),
-                          greenOn: ref.watch(isGreenOnProvider),
+                Expanded(
+                  child: LayoutBuilder(
+                    builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                      // Get the max width and height of the available space
+                      final double maxWidth = constraints.maxWidth;
+                      final double maxHeight = constraints.maxHeight;
+                      return Center(
+                        child: CustomPaint(
+                          size: Size(maxHeight, maxWidth),
+                          painter: TrafficLightPainter(
+                            redOn: ref.watch(isRedOnProvider),
+                            yellowOn: ref.watch(isYellowOnProvider),
+                            greenOn: ref.watch(isGreenOnProvider),
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

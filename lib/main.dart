@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:timelapps/all_imports.dart';
-import 'package:timelapps/responsive_layout.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

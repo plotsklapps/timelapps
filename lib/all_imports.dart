@@ -18,6 +18,7 @@ export 'package:timelapps/painters/trafficlight_painter.dart';
 export 'package:timelapps/providers/theme_provider.dart';
 export 'package:timelapps/providers/timer_provider.dart';
 export 'package:timelapps/providers/trafficlight_provider.dart';
+export 'package:timelapps/responsive_layout.dart';
 export 'package:timelapps/screens/about_screen.dart';
 export 'package:timelapps/screens/desktop_screen.dart';
 export 'package:timelapps/screens/dual_screen.dart';
