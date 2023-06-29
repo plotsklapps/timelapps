@@ -1,15 +1,15 @@
 import 'package:timelapps/all_imports.dart';
 
-class NoiseScreen extends ConsumerStatefulWidget {
-  const NoiseScreen({super.key});
+class NoiseLightScreen extends ConsumerStatefulWidget {
+  const NoiseLightScreen({super.key});
 
   @override
-  ConsumerState<NoiseScreen> createState() {
-    return NoiseScreenState();
+  ConsumerState<NoiseLightScreen> createState() {
+    return NoiseLightScreenState();
   }
 }
 
-class NoiseScreenState extends ConsumerState<NoiseScreen> {
+class NoiseLightScreenState extends ConsumerState<NoiseLightScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

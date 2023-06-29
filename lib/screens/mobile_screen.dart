@@ -12,7 +12,7 @@ class MobileScreen extends ConsumerWidget {
       child: Scaffold(
         body: <Widget>[
           const TimeTimerScreen(),
-          const NoiseScreen(),
+          const NoiseLightScreen(),
           const DualScreen(),
           const AboutScreen(),
         ][ref.watch(currentPageIndexProvider)],
