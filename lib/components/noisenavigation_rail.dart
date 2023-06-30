@@ -1,14 +1,8 @@
 import 'package:timelapps/all_imports.dart';
 
-final StateProvider<int> selectedNoiseRailIndexProvider =
-    StateProvider<int>((StateProviderRef<int> ref) {
-  return 0;
-});
-
 // This navigationrail holds multiple options for the user to select.
-// The user can select themeMode, themeColor, circleColor, font, minutes/
-// seconds and show timer or not. All values are stored in their respective
-// Riverpod providers.
+// The user can select different noiselevels and the app will change the
+// trafficlight color accordingly.
 NavigationRail buildNoiseNavigationRail(
   BuildContext context,
   WidgetRef ref,
@@ -18,6 +12,9 @@ NavigationRail buildNoiseNavigationRail(
     onDestinationSelected: (int index) {
       ref.read(selectedNoiseRailIndexProvider.notifier).state = index;
       if (index == 0) {
+        // User selects Outside Voice, turn this boolean to true and the rest
+        // to false. Also change the noiseNameProvider to the correct name.
+        // Lastly, change the trafficlight to the correct color.
         ref.read(isOutsideVoiceOnProvider.notifier).state =
             !ref.watch(isOutsideVoiceOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[0];
@@ -30,6 +27,9 @@ NavigationRail buildNoiseNavigationRail(
         ref.read(isYellowOnProvider.notifier).state = false;
         ref.read(isGreenOnProvider.notifier).state = true;
       } else if (index == 1) {
+        // User selects Presentation Voice, turn this boolean to true and the
+        // rest to false. Also change the noiseNameProvider to the correct name.
+        // Lastly, change the trafficlight to the correct color.
         ref.read(isPresentationVoiceOnProvider.notifier).state =
             !ref.watch(isPresentationVoiceOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[1];
@@ -42,6 +42,9 @@ NavigationRail buildNoiseNavigationRail(
         ref.read(isYellowOnProvider.notifier).state = false;
         ref.read(isGreenOnProvider.notifier).state = true;
       } else if (index == 2) {
+        // User selects Talking Voice, turn this boolean to true and the rest
+        // to false. Also change the noiseNameProvider to the correct name.
+        // Lastly, change the trafficlight to the correct color.
         ref.read(isTalkingVoiceOnProvider.notifier).state =
             !ref.watch(isTalkingVoiceOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[2];
@@ -55,6 +58,9 @@ NavigationRail buildNoiseNavigationRail(
         ref.read(isYellowOnProvider.notifier).state = false;
         ref.read(isGreenOnProvider.notifier).state = true;
       } else if (index == 3) {
+        // User selects Working Voice, turn this boolean to true and the rest
+        // to false. Also change the noiseNameProvider to the correct name.
+        // Lastly, change the trafficlight to the correct color.
         ref.read(isWorkingVoiceOnProvider.notifier).state =
             !ref.watch(isWorkingVoiceOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[3];
@@ -67,6 +73,9 @@ NavigationRail buildNoiseNavigationRail(
         ref.read(isYellowOnProvider.notifier).state = true;
         ref.read(isGreenOnProvider.notifier).state = false;
       } else if (index == 4) {
+        // User selects Whispering, turn this boolean to true and the rest
+        // to false. Also change the noiseNameProvider to the correct name.
+        // Lastly, change the trafficlight to the correct color.
         ref.read(isWhisperingOnProvider.notifier).state =
             !ref.watch(isWhisperingOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[4];
@@ -79,6 +88,9 @@ NavigationRail buildNoiseNavigationRail(
         ref.read(isYellowOnProvider.notifier).state = true;
         ref.read(isGreenOnProvider.notifier).state = false;
       } else if (index == 5) {
+        // User selects Silence, turn this boolean to true and the rest
+        // to false. Also change the noiseNameProvider to the correct name.
+        // Lastly, change the trafficlight to the correct color.
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[5];
         ref.read(isSilenceOnProvider.notifier).state =
             !ref.watch(isSilenceOnProvider);
@@ -94,6 +106,8 @@ NavigationRail buildNoiseNavigationRail(
     },
     labelType: NavigationRailLabelType.all,
     destinations: <NavigationRailDestination>[
+      // UI code for the navigation rail. Checking the booleans which icon
+      // to show.
       NavigationRailDestination(
         icon: ref.watch(isOutsideVoiceOnProvider)
             ? const Icon(FontAwesomeIcons.check)
