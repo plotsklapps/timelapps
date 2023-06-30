@@ -15,6 +15,7 @@ export 'package:timelapps/components/timernavigation_rail.dart';
 export 'package:timelapps/firebase_options.dart';
 export 'package:timelapps/painters/timer_painter.dart';
 export 'package:timelapps/painters/trafficlight_painter.dart';
+export 'package:timelapps/providers/navigation_provider.dart';
 export 'package:timelapps/providers/theme_provider.dart';
 export 'package:timelapps/providers/timer_provider.dart';
 export 'package:timelapps/providers/trafficlight_provider.dart';

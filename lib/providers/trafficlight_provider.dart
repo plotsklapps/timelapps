@@ -19,32 +19,32 @@ final StateProvider<bool> isGreenOnProvider =
   return true;
 });
 
-final StateProvider<bool> isOneOnProvider =
+final StateProvider<bool> isOutsideVoiceOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isTwoOnProvider =
+final StateProvider<bool> isPresentationVoiceOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isThreeOnProvider =
+final StateProvider<bool> isTalkingVoiceOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isFourOnProvider =
+final StateProvider<bool> isWorkingVoiceOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isFiveOnProvider =
+final StateProvider<bool> isWhisperingOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
-final StateProvider<bool> isSixOnProvider =
+final StateProvider<bool> isSilenceOnProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });

@@ -18,72 +18,75 @@ NavigationRail buildNoiseNavigationRail(
     onDestinationSelected: (int index) {
       ref.read(selectedNoiseRailIndexProvider.notifier).state = index;
       if (index == 0) {
-        ref.read(isOneOnProvider.notifier).state = !ref.watch(isOneOnProvider);
+        ref.read(isOutsideVoiceOnProvider.notifier).state =
+            !ref.watch(isOutsideVoiceOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[0];
-        ref.read(isTwoOnProvider.notifier).state = false;
-        ref.read(isThreeOnProvider.notifier).state = false;
-        ref.read(isFourOnProvider.notifier).state = false;
-        ref.read(isFiveOnProvider.notifier).state = false;
-        ref.read(isSixOnProvider.notifier).state = false;
+        ref.read(isPresentationVoiceOnProvider.notifier).state = false;
+        ref.read(isTalkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWorkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWhisperingOnProvider.notifier).state = false;
+        ref.read(isSilenceOnProvider.notifier).state = false;
         ref.read(isRedOnProvider.notifier).state = false;
         ref.read(isYellowOnProvider.notifier).state = false;
         ref.read(isGreenOnProvider.notifier).state = true;
       } else if (index == 1) {
-        ref.read(isTwoOnProvider.notifier).state = !ref.watch(isTwoOnProvider);
+        ref.read(isPresentationVoiceOnProvider.notifier).state =
+            !ref.watch(isPresentationVoiceOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[1];
-        ref.read(isOneOnProvider.notifier).state = false;
-        ref.read(isThreeOnProvider.notifier).state = false;
-        ref.read(isFourOnProvider.notifier).state = false;
-        ref.read(isFiveOnProvider.notifier).state = false;
-        ref.read(isSixOnProvider.notifier).state = false;
+        ref.read(isOutsideVoiceOnProvider.notifier).state = false;
+        ref.read(isTalkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWorkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWhisperingOnProvider.notifier).state = false;
+        ref.read(isSilenceOnProvider.notifier).state = false;
         ref.read(isRedOnProvider.notifier).state = false;
         ref.read(isYellowOnProvider.notifier).state = false;
         ref.read(isGreenOnProvider.notifier).state = true;
       } else if (index == 2) {
-        ref.read(isThreeOnProvider.notifier).state =
-            !ref.watch(isThreeOnProvider);
+        ref.read(isTalkingVoiceOnProvider.notifier).state =
+            !ref.watch(isTalkingVoiceOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[2];
-        ref.read(isOneOnProvider.notifier).state = false;
-        ref.read(isTwoOnProvider.notifier).state = false;
-        ref.read(isOneOnProvider.notifier).state = false;
-        ref.read(isFourOnProvider.notifier).state = false;
-        ref.read(isFiveOnProvider.notifier).state = false;
-        ref.read(isSixOnProvider.notifier).state = false;
+        ref.read(isOutsideVoiceOnProvider.notifier).state = false;
+        ref.read(isPresentationVoiceOnProvider.notifier).state = false;
+        ref.read(isOutsideVoiceOnProvider.notifier).state = false;
+        ref.read(isWorkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWhisperingOnProvider.notifier).state = false;
+        ref.read(isSilenceOnProvider.notifier).state = false;
         ref.read(isRedOnProvider.notifier).state = false;
         ref.read(isYellowOnProvider.notifier).state = false;
         ref.read(isGreenOnProvider.notifier).state = true;
       } else if (index == 3) {
-        ref.read(isFourOnProvider.notifier).state =
-            !ref.watch(isFourOnProvider);
+        ref.read(isWorkingVoiceOnProvider.notifier).state =
+            !ref.watch(isWorkingVoiceOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[3];
-        ref.read(isOneOnProvider.notifier).state = false;
-        ref.read(isTwoOnProvider.notifier).state = false;
-        ref.read(isThreeOnProvider.notifier).state = false;
-        ref.read(isFiveOnProvider.notifier).state = false;
-        ref.read(isSixOnProvider.notifier).state = false;
+        ref.read(isOutsideVoiceOnProvider.notifier).state = false;
+        ref.read(isPresentationVoiceOnProvider.notifier).state = false;
+        ref.read(isTalkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWhisperingOnProvider.notifier).state = false;
+        ref.read(isSilenceOnProvider.notifier).state = false;
         ref.read(isRedOnProvider.notifier).state = false;
         ref.read(isYellowOnProvider.notifier).state = true;
         ref.read(isGreenOnProvider.notifier).state = false;
       } else if (index == 4) {
-        ref.read(isFiveOnProvider.notifier).state =
-            !ref.watch(isFiveOnProvider);
+        ref.read(isWhisperingOnProvider.notifier).state =
+            !ref.watch(isWhisperingOnProvider);
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[4];
-        ref.read(isOneOnProvider.notifier).state = false;
-        ref.read(isTwoOnProvider.notifier).state = false;
-        ref.read(isThreeOnProvider.notifier).state = false;
-        ref.read(isFourOnProvider.notifier).state = false;
-        ref.read(isSixOnProvider.notifier).state = false;
+        ref.read(isOutsideVoiceOnProvider.notifier).state = false;
+        ref.read(isPresentationVoiceOnProvider.notifier).state = false;
+        ref.read(isTalkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWorkingVoiceOnProvider.notifier).state = false;
+        ref.read(isSilenceOnProvider.notifier).state = false;
         ref.read(isRedOnProvider.notifier).state = false;
         ref.read(isYellowOnProvider.notifier).state = true;
         ref.read(isGreenOnProvider.notifier).state = false;
       } else if (index == 5) {
         ref.read(noiseNameProvider.notifier).state = noiseNamesList[5];
-        ref.read(isSixOnProvider.notifier).state = !ref.watch(isSixOnProvider);
-        ref.read(isOneOnProvider.notifier).state = false;
-        ref.read(isTwoOnProvider.notifier).state = false;
-        ref.read(isThreeOnProvider.notifier).state = false;
-        ref.read(isFourOnProvider.notifier).state = false;
-        ref.read(isFiveOnProvider.notifier).state = false;
+        ref.read(isSilenceOnProvider.notifier).state =
+            !ref.watch(isSilenceOnProvider);
+        ref.read(isOutsideVoiceOnProvider.notifier).state = false;
+        ref.read(isPresentationVoiceOnProvider.notifier).state = false;
+        ref.read(isTalkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWorkingVoiceOnProvider.notifier).state = false;
+        ref.read(isWhisperingOnProvider.notifier).state = false;
         ref.read(isRedOnProvider.notifier).state = true;
         ref.read(isYellowOnProvider.notifier).state = false;
         ref.read(isGreenOnProvider.notifier).state = false;
@@ -92,37 +95,37 @@ NavigationRail buildNoiseNavigationRail(
     labelType: NavigationRailLabelType.all,
     destinations: <NavigationRailDestination>[
       NavigationRailDestination(
-        icon: ref.watch(isOneOnProvider)
+        icon: ref.watch(isOutsideVoiceOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.bullhorn),
         label: const Text('Outside'),
       ),
       NavigationRailDestination(
-        icon: ref.watch(isTwoOnProvider)
+        icon: ref.watch(isPresentationVoiceOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.personChalkboard),
         label: const Text('Presentation'),
       ),
       NavigationRailDestination(
-        icon: ref.watch(isThreeOnProvider)
+        icon: ref.watch(isTalkingVoiceOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.volumeHigh),
         label: const Text('Talking'),
       ),
       NavigationRailDestination(
-        icon: ref.watch(isFourOnProvider)
+        icon: ref.watch(isWorkingVoiceOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.volumeLow),
         label: const Text('Working'),
       ),
       NavigationRailDestination(
-        icon: ref.watch(isFiveOnProvider)
+        icon: ref.watch(isWhisperingOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.volumeOff),
         label: const Text('Whisper'),
       ),
       NavigationRailDestination(
-        icon: ref.watch(isSixOnProvider)
+        icon: ref.watch(isSilenceOnProvider)
             ? const Icon(FontAwesomeIcons.check)
             : const Icon(FontAwesomeIcons.volumeXmark),
         label: const Text('Silent'),
