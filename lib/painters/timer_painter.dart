@@ -33,13 +33,13 @@ class TimerPainter extends CustomPainter {
       ..strokeWidth = 2
       ..color = ref.watch(isThemeGreenProvider) &&
               ref.watch(isThemeLightProvider)
-          ? FlexColor.moneyLightPrimary
+          ? FlexColor.moneyLightPrimaryVariant
           : ref.watch(isThemeGreenProvider) && !ref.watch(isThemeLightProvider)
-              ? FlexColor.moneyDarkPrimary
+              ? FlexColor.moneyDarkPrimaryVariant
               : !ref.watch(isThemeGreenProvider) &&
                       ref.watch(isThemeLightProvider)
-                  ? FlexColor.redWineLightPrimary
-                  : FlexColor.redWineDarkPrimary;
+                  ? FlexColor.redWineLightPrimaryVariant
+                  : FlexColor.redWineDarkPrimaryVariant;
     const double markerLength = 20.0;
     final int markerCount = maxValue.toInt();
 
