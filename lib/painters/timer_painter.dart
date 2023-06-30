@@ -4,7 +4,7 @@ import 'package:timelapps/all_imports.dart';
 
 class TimerPainter extends CustomPainter {
   // timerValue is fetched from user interaction. WidgetRef is used to
-  // watch the isColorRedProvider.
+  // watch the necessary Riverpod Providers.
   final WidgetRef ref;
   final double timerValue;
   final double maxValue;
@@ -19,8 +19,8 @@ class TimerPainter extends CustomPainter {
     final double fillPercentage = timerValue / maxValue;
 
     // This is where the draggable circle gets it's parameters.
-    // Use the isColorRedProvider to determine the color of the draggable
-    // circle.
+    // Use the isColorRedProvider and the isThemeLightProvider to determine the
+    // color of the draggable circle.
     final Paint paint = Paint()
       ..color = ref.watch(isColorRedProvider) && ref.watch(isThemeLightProvider)
           ? FlexColor.moneyLightPrimary
@@ -34,6 +34,8 @@ class TimerPainter extends CustomPainter {
       ..strokeWidth = 80.0;
 
     // This is where the minute markers get their parameters.
+    // Use the isThemeGreenProvider and the isThemeLightProvider to determine
+    // the color of the minute markers.
     final Paint markerPaint = Paint()
       ..strokeWidth = 2
       ..color = ref.watch(isThemeGreenProvider) &&
