@@ -70,7 +70,7 @@ final StateProvider<bool> isTimeShownProvider =
 });
 
 // ThemeData provider for light theme, the colorscheme is based on
-// flexSchemeProvider
+// flexSchemeProvider and the fontscheme is based on fontFamilyProvider
 final StateProvider<ThemeData> themeLightProvider =
     StateProvider<ThemeData>((StateProviderRef<ThemeData> ref) {
   return FlexThemeData.light(
@@ -155,7 +155,7 @@ final StateProvider<ThemeData> themeLightProvider =
 });
 
 // ThemeData provider for dark theme, the colorscheme is based on
-// flexSchemeProvider
+// flexSchemeProvider and the fontscheme is based on fontFamilyProvider
 final StateProvider<ThemeData> themeDarkProvider =
     StateProvider<ThemeData>((StateProviderRef<ThemeData> ref) {
   return FlexThemeData.dark(

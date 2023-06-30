@@ -1,3 +1,5 @@
+// Use this class to store and retrieve all the strings used in the app.
+
 class UtilsString {
   // CustomDrawer Strings
   static const String kPlotsklappsLogoStraight =

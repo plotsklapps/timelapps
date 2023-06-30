@@ -1,8 +1,8 @@
 import 'package:timelapps/all_imports.dart';
 
-// HomeScreen is nothing else than just a Scaffold showing a NavigationBar
-// IF the 'Timer is running' boolean is false. Rest of the content is shown via
-// the currentPageIndexProvider.
+// MobileScreen is nothing else than just a Scaffold showing a NavigationBar
+// IF the 'Timer is running' boolean is false. Rest of the content is shown
+// according to the currentPageIndexProvider.
 class MobileScreen extends ConsumerWidget {
   const MobileScreen({super.key});
 

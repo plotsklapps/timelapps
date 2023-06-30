@@ -35,6 +35,7 @@ class AboutScreen extends StatelessWidget {
             ),
           ),
           const Divider(),
+          // Button to open plotsklapps website.
           ElevatedButton(
             onPressed: () async {
               await UtilsHttp().launchWebsite();
@@ -52,6 +53,7 @@ class AboutScreen extends StatelessWidget {
               .fade(delay: 0.ms, duration: 1000.ms)
               .move(delay: 0.ms, duration: 1000.ms),
           const SizedBox(height: 8),
+          // Button to open source code on GitHub.
           ElevatedButton(
             onPressed: () async {
               await UtilsHttp().launchSourceCode();
@@ -69,6 +71,7 @@ class AboutScreen extends StatelessWidget {
               .fade(delay: 500.ms, duration: 1000.ms)
               .move(delay: 500.ms, duration: 1000.ms),
           const SizedBox(height: 8),
+          // Button to show the bottomsheet for donations.
           ElevatedButton(
             onPressed: () async {
               await buildShowDonationsDialog(context);
@@ -86,6 +89,8 @@ class AboutScreen extends StatelessWidget {
               .fade(delay: 1000.ms, duration: 1000.ms)
               .move(delay: 1000.ms, duration: 1000.ms),
           const SizedBox(height: 8),
+          // Button to show the bottomsheet with app related content, like
+          // packages used.
           ElevatedButton(
             onPressed: () async {
               await buildShowAboutDialog(context);

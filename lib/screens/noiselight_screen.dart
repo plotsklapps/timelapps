@@ -15,6 +15,7 @@ class NoiseLightScreenState extends ConsumerState<NoiseLightScreen> {
     return Scaffold(
       body: Row(
         children: <Widget>[
+          // Only show the navigation bar when the timer is NOT running
           if (ref.watch(isRunningProvider))
             const SizedBox()
           else
@@ -27,6 +28,7 @@ class NoiseLightScreenState extends ConsumerState<NoiseLightScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                // Show the value of the noiselevel.
                 Text(
                   ref.watch(noiseNameProvider),
                   style: const TextStyle(

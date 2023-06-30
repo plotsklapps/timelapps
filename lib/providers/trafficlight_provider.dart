@@ -49,6 +49,7 @@ final StateProvider<bool> isSilenceOnProvider =
   return false;
 });
 
+// List of type String that stores the names of the volumelevels
 final List<String> noiseNamesList = <String>[
   'Outside voice',
   'Presentation voice',
@@ -58,6 +59,8 @@ final List<String> noiseNamesList = <String>[
   'Silence',
 ];
 
+// String Provider that returns the String value of the selected index in the
+// noiseNavigationRail or dualNavigationRail.
 final StateProvider<String> noiseNameProvider = StateProvider<String>(
   (StateProviderRef<String> ref) {
     return noiseNamesList[0];

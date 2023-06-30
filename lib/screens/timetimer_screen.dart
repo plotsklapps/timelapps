@@ -22,9 +22,11 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
   // We need two timers, one for seconds, one for minutes, chosen by
   // the user in the navigationrail. They are nullable because they
   // are only initialized when the timer is running.
-  late AudioPlayer audioPlayer;
+  // Also, we create a late instance of AudioPlayer (instantiated
+  // in initState method).
   Timer? secondsTimer;
   Timer? minutesTimer;
+  late AudioPlayer audioPlayer;
 
   @override
   void initState() {
@@ -44,7 +46,6 @@ class TimeTimerScreenState extends ConsumerState<TimeTimerScreen> {
   void startTimer() {
     // First, set the 'Timer is running' boolean to true
     ref.read(isRunningProvider.notifier).state = true;
-
     // Second, check if the user wants to see minutes or seconds, then
     // start the corresponding timer. When the timer reaches 0, call
     // stopTimer() to stop the timer and reset the 'Timer is running' boolean.

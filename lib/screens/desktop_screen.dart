@@ -5,6 +5,7 @@ class DesktopScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // So simple.
     return const Scaffold(
       body: Center(
         child: PhoneContainer(

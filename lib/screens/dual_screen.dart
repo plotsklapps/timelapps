@@ -41,7 +41,6 @@ class DualScreenState extends ConsumerState<DualScreen> {
   void startTimer() {
     // First, set the 'Timer is running' boolean to true
     ref.read(isRunningProvider.notifier).state = true;
-
     // Second, check if the user wants to see minutes or seconds, then
     // start the corresponding timer. When the timer reaches 0, call
     // stopTimer() to stop the timer and reset the 'Timer is running' boolean.
@@ -92,7 +91,6 @@ class DualScreenState extends ConsumerState<DualScreen> {
       // Calculate the angle of the touch relative to the axes.
       final double touchAngle =
           atan2(touchPositionFromCenter.dy, touchPositionFromCenter.dx);
-
       // First, check if the user wants to see minutes or seconds, then
       // convert angle to degrees and add 90 (so 0 degrees is at top)
       // Then mod by 360 to get value from 0-360, and divide by 6 to get
@@ -118,6 +116,9 @@ class DualScreenState extends ConsumerState<DualScreen> {
           else
             LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraint) {
+                // The SingleChildScrollView gets wrapped in a
+                // ScrollConfiguration to disable the scrollbar on web and
+                // give it more scrollable options with different devices.
                 return ScrollConfiguration(
                   behavior: const ScrollBehavior().copyWith(
                     scrollbars: false,
@@ -129,6 +130,8 @@ class DualScreenState extends ConsumerState<DualScreen> {
                     },
                   ),
                   child: SingleChildScrollView(
+                    // The ConstrainedBox with IntrinsicHeight makes sure
+                    // the navigation rail is scrollable.
                     child: ConstrainedBox(
                       constraints:
                           BoxConstraints(minHeight: constraint.maxHeight),
@@ -146,10 +149,15 @@ class DualScreenState extends ConsumerState<DualScreen> {
                 );
               },
             ),
+          // We need to show two three items in a column. First one (Text)
+          // is the name of the noise, the second and third are wrapped in
+          // separate Expanded widgets to make sure they take up the same
+          // amount of space.
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                // Show the value of the noiselevel.
                 Text(
                   ref.watch(noiseNameProvider),
                   style: const TextStyle(

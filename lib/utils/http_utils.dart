@@ -1,5 +1,7 @@
 import 'package:timelapps/all_imports.dart';
 
+// Use this class to launch URLs in the app.
+
 class UtilsHttp {
   static final Uri plotsklappsWebsiteURL =
       Uri.parse('https://www.plotsklapps.dev');

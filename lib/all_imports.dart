@@ -1,3 +1,7 @@
+// I hate having to import all these packages in every file. So I created this
+// file to import them all in one go. Now I can just import this file in every
+// file and I'm done.
+
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flex_color_scheme/flex_color_scheme.dart';
 export 'package:flutter/material.dart';

@@ -14,30 +14,25 @@ final StateProvider<double> minutesProvider =
   return 15;
 });
 
+// Bool Provider that returns true if the timer is running.
 final StateProvider<bool> isRunningProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return false;
 });
 
+// Bool Provider that returns true if the user selected the bike sound.
 final StateProvider<bool> isBikeBellProvider =
     StateProvider<bool>((StateProviderRef<bool> ref) {
   return true;
 });
 
+// String Provider that returns the selected mp3 file to play according to
+// the isBikeBellProvider.
 final StateProvider<String> bellSoundProvider =
     StateProvider<String>((StateProviderRef<String> ref) {
   if (ref.watch(isBikeBellProvider)) {
     return 'assets/bell_bike.mp3';
   } else {
     return 'assets/bell_reception.mp3';
-  }
-});
-
-final StateProvider<String> secMinProvider =
-    StateProvider<String>((StateProviderRef<String> ref) {
-  if (ref.watch(isMinutesShownProvider)) {
-    return 'Minutes';
-  } else {
-    return 'Seconds';
   }
 });
