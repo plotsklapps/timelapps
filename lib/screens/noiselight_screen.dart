@@ -45,6 +45,7 @@ class NoiseLightScreenState extends ConsumerState<NoiseLightScreen> {
                         child: CustomPaint(
                           size: Size(maxHeight, maxWidth),
                           painter: TrafficLightPainter(
+                            ref: ref,
                             redOn: ref.watch(isRedOnProvider),
                             yellowOn: ref.watch(isYellowOnProvider),
                             greenOn: ref.watch(isGreenOnProvider),

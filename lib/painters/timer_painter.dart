@@ -5,9 +5,9 @@ import 'package:timelapps/all_imports.dart';
 class TimerPainter extends CustomPainter {
   // timerValue is fetched from user interaction. WidgetRef is used to
   // watch the isColorRedProvider.
+  final WidgetRef ref;
   final double timerValue;
   final double maxValue;
-  final WidgetRef ref;
 
   TimerPainter(this.ref, {this.timerValue = 0, this.maxValue = 60});
 

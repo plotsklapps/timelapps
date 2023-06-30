@@ -1,11 +1,13 @@
 import 'package:timelapps/all_imports.dart';
 
 class TrafficLightPainter extends CustomPainter {
+  WidgetRef ref;
   final bool redOn;
   final bool yellowOn;
   final bool greenOn;
 
   TrafficLightPainter({
+    required this.ref,
     required this.redOn,
     required this.yellowOn,
     required this.greenOn,
@@ -14,7 +16,9 @@ class TrafficLightPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Colors.grey.shade800
+      ..color = ref.watch(isThemeGreenProvider)
+          ? FlexColor.moneyLightPrimaryVariant
+          : FlexColor.redWineLightPrimaryVariant
       ..style = PaintingStyle.fill;
 
     final Paint lightOnPaint = Paint()..style = PaintingStyle.fill;
@@ -104,8 +108,6 @@ class TrafficLightPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(TrafficLightPainter oldDelegate) {
-    // You might want to add more conditions here based on your actual
-    // requirements.
     return oldDelegate.redOn != redOn ||
         oldDelegate.yellowOn != yellowOn ||
         oldDelegate.greenOn != greenOn;
