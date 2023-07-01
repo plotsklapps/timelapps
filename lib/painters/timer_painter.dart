@@ -22,12 +22,12 @@ class TimerPainter extends CustomPainter {
     // Use the isColorRedProvider and the isThemeLightProvider to determine the
     // color of the draggable circle.
     final Paint paint = Paint()
-      ..color = ref.watch(isColorRedProvider) && ref.watch(isThemeLightProvider)
+      ..color = !ref.watch(isColorRedProvider) &&
+              ref.watch(isThemeLightProvider)
           ? FlexColor.moneyLightPrimary
           : ref.watch(isColorRedProvider) && !ref.watch(isThemeLightProvider)
               ? FlexColor.moneyDarkPrimary
-              : !ref.watch(isColorRedProvider) &&
-                      ref.watch(isThemeLightProvider)
+              : ref.watch(isColorRedProvider) && ref.watch(isThemeLightProvider)
                   ? FlexColor.redWineLightPrimary
                   : FlexColor.redWineDarkPrimary
       ..style = PaintingStyle.stroke
