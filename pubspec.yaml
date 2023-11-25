@@ -19,12 +19,12 @@ dependencies:
   flutter_native_splash: ^2.3.1
   flutter_riverpod: ^2.3.6
   font_awesome_flutter: ^10.4.0
-  google_fonts: ^5.1.0
+  google_fonts: ^6.1.0
   just_audio: ^0.9.34
   url_launcher: ^6.1.11
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
   flutter_test:
     sdk: flutter
 
