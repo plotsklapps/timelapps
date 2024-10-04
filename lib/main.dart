@@ -1,11 +1,13 @@
 import 'package:timelapps/all_imports.dart';
 
 // Run the app, but first, ensure that Firebase is initialized.
+// This is ONLY used for Firebase Hosting as PWA!
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // ProviderScope is needed by Riverpod to work.
   runApp(const ProviderScope(child: MainEntry()));
 }
 
