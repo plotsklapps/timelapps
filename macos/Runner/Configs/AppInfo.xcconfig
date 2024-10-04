@@ -11,4 +11,4 @@ PRODUCT_NAME = timelapps
 PRODUCT_BUNDLE_IDENTIFIER = dev.plotsklapps.timelapps
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 dev.plotsklapps. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 dev.plotsklapps. All rights reserved.

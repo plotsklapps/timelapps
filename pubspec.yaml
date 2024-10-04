@@ -10,12 +10,11 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.14.0
+  firebase_core: ^3.6.0
   flex_color_scheme: ^7.1.2
   flutter:
     sdk: flutter
   flutter_animate: ^4.2.0
-  flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.1
   flutter_riverpod: ^2.3.6
   font_awesome_flutter: ^10.4.0
@@ -24,7 +23,8 @@ dependencies:
   url_launcher: ^6.1.11
 
 dev_dependencies:
-  flutter_lints: ^3.0.1
+  flutter_launcher_icons: ^0.14.1
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 
@@ -37,29 +37,30 @@ flutter_launcher_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/icon_timelapps.png"
-  adaptive_icon_background: "#DEDEDE"
-  adaptive_icon_foreground: "assets/icon_timelapps.png"
-  min_sdk_android: 24 # android min sdk min:16, default 21
+  background_color_ios: "#99b9a2"
+  image_path: "assets/icontimelapps.png"
+  min_sdk_android: 24
+  adaptive_icon_background: "#99b9a2"
+  adaptive_icon_foreground: "assets/icontimelapps.png"
   web:
     generate: true
-    image_path: "assets/icon_timelapps.png"
-    background_color: "#DEDEDE"
-    theme_color: "#DEDEDE"
+    image_path: "assets/icontimelapps.png"
+    background_color: "#99b9a2"
+    theme_color: "#99b9a2"
   windows:
     generate: true
-    image_path: "assets/icon_timelapps.png"
-    icon_size: 48 # min:48, max:256, default: 48
+    image_path: "assets/icontimelapps.png"
+    icon_size: 48
   macos:
     generate: true
-    image_path: "assets/icon_timelapps.png"
+    image_path: "assets/icontimelapps.png"
 
 flutter_native_splash:
-  color: "#dedede"
+  color: "#99b9a2"
   image: assets/logo_plotsklapps_stacked.png
   android_12:
-    color: "#dedede"
-    icon_background_color: "#dedede"
+    color: "#99b9a2"
+    icon_background_color: "#99b9a2"
   android_gravity: center
   ios_content_mode: center
   web_image_mode: center

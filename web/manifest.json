@@ -3,9 +3,9 @@
     "short_name": "timelapps",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#DEDEDE",
-    "theme_color": "#DEDEDE",
-    "description": "TimeTimer and Pomodoro",
+    "background_color": "#99b9a2",
+    "theme_color": "#99b9a2",
+    "description": "Timer for Educators",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

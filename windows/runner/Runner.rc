@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "timelapps" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "timelapps" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 dev.plotsklapps. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 dev.plotsklapps. All rights reserved." "\0"
             VALUE "OriginalFilename", "timelapps.exe" "\0"
             VALUE "ProductName", "timelapps" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
