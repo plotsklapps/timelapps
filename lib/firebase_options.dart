@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -68,19 +65,28 @@ class DefaultFirebaseOptions {
     messagingSenderId: '309005438799',
     projectId: 'plotsklapps-timelapps',
     storageBucket: 'plotsklapps-timelapps.appspot.com',
-    iosClientId:
-        '309005438799-4pvka8t7dopp94beruq8s609icj5gfrp.apps.googleusercontent.com',
+    iosClientId: '309005438799-4pvka8t7dopp94beruq8s609icj5gfrp.apps.googleusercontent.com',
     iosBundleId: 'dev.plotsklapps.timelapps',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyAEzCoQkiv6HPTOUamQnUXuLrUayjyWOuI',
-    appId: '1:309005438799:ios:fb5b07d27d58910091bf3a',
+    appId: '1:309005438799:ios:ace96a32f634284b91bf3a',
     messagingSenderId: '309005438799',
     projectId: 'plotsklapps-timelapps',
     storageBucket: 'plotsklapps-timelapps.appspot.com',
-    iosClientId:
-        '309005438799-21o6rccd0ru1795ujf0nvoit98qok10j.apps.googleusercontent.com',
-    iosBundleId: 'dev.plotsklapps.timelapps.RunnerTests',
+    iosClientId: '309005438799-4pvka8t7dopp94beruq8s609icj5gfrp.apps.googleusercontent.com',
+    iosBundleId: 'dev.plotsklapps.timelapps',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCcK5ynKo24S6f9gQc43NptiKAIyPWi5Ug',
+    appId: '1:309005438799:web:15579f2941a2b8e591bf3a',
+    messagingSenderId: '309005438799',
+    projectId: 'plotsklapps-timelapps',
+    authDomain: 'plotsklapps-timelapps.firebaseapp.com',
+    storageBucket: 'plotsklapps-timelapps.appspot.com',
+    measurementId: 'G-HTLXY3WGCP',
+  );
+
 }
