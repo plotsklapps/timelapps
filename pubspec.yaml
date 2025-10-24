@@ -10,21 +10,21 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
-  firebase_core: ^3.6.0
-  flex_color_scheme: ^7.1.2
+  firebase_core: ^4.2.0
+  flex_color_scheme: ^8.3.1
   flutter:
     sdk: flutter
   flutter_animate: ^4.2.0
   flutter_native_splash: ^2.3.1
-  flutter_riverpod: ^2.3.6
+  flutter_riverpod: ^3.0.3
   font_awesome_flutter: ^10.4.0
   google_fonts: ^6.1.0
-  just_audio: ^0.9.34
+  just_audio: ^0.10.5
   url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.1
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
 
